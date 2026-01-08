@@ -19,6 +19,11 @@
 - Q: How many food items should be displayed in the random selection on the home page? → A: 6 items
 - Q: How frequently should the system check for content updates when online? → A: On every app launch/visit
 - Q: Should the map display all Vietnamese provinces/cities or only major ones? → A: All 34 provinces and cities (as of 2025 administrative reform)
+- Q: Which browsers and minimum versions should be officially supported? → A: Modern browsers only (Chrome 90+, Firefox 88+, Safari 14+, Edge 90+)
+- Q: What format should be used for storing static food content? → A: Markdown files with YAML frontmatter
+- Q: Which accessibility standard should the platform comply with? → A: WCAG 2.1 Level AA
+- Q: Should the platform collect any user analytics or behavioral data? → A: Google Analytics
+- Q: Should all 20 food items be 100% complete at launch, or can we launch with partial data and iterate? → A: Launch with 20 items at 80% completeness minimum (as defined in SC-004), iterate to 100%
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -190,7 +195,7 @@ As a user who may have unreliable internet connectivity or want to reduce data u
 - **FR-015**: System MUST handle social media content failures gracefully without breaking core functionality
 
 #### Content Management
-- **FR-016**: System MUST store static food information (descriptions, images, cooking methods, history) in a structured format
+- **FR-016**: System MUST store static food information (descriptions, images, cooking methods, history) using Markdown files with YAML frontmatter for structured metadata
 - **FR-017**: System MUST distinguish between static content (food data) and dynamic content (social media feeds)
 - **FR-018**: System MUST support high-quality food images with a minimum resolution of 800x600 pixels for each item
 
@@ -221,6 +226,9 @@ As a user who may have unreliable internet connectivity or want to reduce data u
 - **FR-035**: System MUST allow all users to access full content without requiring authentication or account creation
 - **FR-036**: System MUST not implement any paywalls or content restrictions based on user accounts
 
+#### Analytics & Observability
+- **FR-038**: System MUST integrate Google Analytics to track user behavior, page views, and content engagement for product improvement and success criteria measurement
+
 ### Key Entities
 
 - **Street Food Item**: Represents a Vietnamese street food dish with attributes including name (multi-language), description, origin story, cultural significance, traditional preparation region, associated customs or events, eating time preferences, and province associations
@@ -238,10 +246,10 @@ As a user who may have unreliable internet connectivity or want to reduce data u
 
 ### Measurable Outcomes
 
-- **SC-001**: Users can discover and view detailed information about at least 20 distinct Vietnamese street food items within the first release
+- **SC-001**: Users can discover and view detailed information about at least 20 distinct Vietnamese street food items at launch, with each item meeting the 80% completeness standard defined in SC-004
 - **SC-002**: Content loads asynchronously with perceived loading time under 2 seconds for food detail pages
 - **SC-003**: Five languages are fully supported (Vietnamese, English, Chinese, Japanese, Korean) with complete translations for all static content
-- **SC-004**: 80% of food items include high-quality images (minimum 800x600 pixels), complete ingredient lists, and cooking method descriptions
+- **SC-004**: 80% of food items include high-quality images (minimum 800x600 pixels), complete ingredient lists, and cooking method descriptions; this represents the minimum completeness bar for launch, with iterative improvements toward 100% completeness post-launch
 - **SC-005**: Users can successfully navigate from discovery to location/purchase information in under 3 clicks
 - **SC-006**: Social media integration displays relevant content for at least 60% of featured food items
 - **SC-007**: Multi-language URLs are properly formatted and indexed for search engine optimization
@@ -254,6 +262,7 @@ As a user who may have unreliable internet connectivity or want to reduce data u
 - **SC-014**: 75% of food items include eating time information (morning, afternoon, evening, night, or anytime)
 - **SC-015**: Time-based food recommendations display within 1 second of page load
 - **SC-021**: Home page displays the "Bây giờ ăn gì?" message with time-appropriate food suggestions during all eating time periods
+- **SC-022**: Platform passes WCAG 2.1 Level AA compliance validation with automated testing tools and manual accessibility audits
 - **SC-016**: Previously viewed content remains accessible offline with full fidelity
 - **SC-017**: Offline cache checks for updates on every app launch/visit when online and refreshes automatically within 5 seconds if updates are detected
 - **SC-018**: 100% of users can access all content without creating an account or logging in
@@ -262,7 +271,7 @@ As a user who may have unreliable internet connectivity or want to reduce data u
 
 ### Quality Attributes
 
-- **Accessibility**: Content is readable and images have descriptive alternatives for visually impaired users
+- **Accessibility**: Platform complies with WCAG 2.1 Level AA standards including proper semantic HTML, keyboard navigation, color contrast ratios, screen reader support, and alternative text for all images
 - **SEO Performance**: Multi-language pages are indexable by search engines with proper metadata
 - **Cultural Accuracy**: Food information reflects authentic Vietnamese culinary traditions, regional variations, and eating time customs
 - **Visual Quality**: Images meet minimum resolution standards (800x600 pixels) and accurately represent the food items
@@ -277,6 +286,7 @@ As a user who may have unreliable internet connectivity or want to reduce data u
 - Users have basic internet connectivity for initial content loading (offline access available after first visit)
 - Social media platforms will maintain publicly accessible content via their APIs or embed codes
 - Content will be curated or sourced through manual input or automated crawlers (implementation method to be determined in planning)
+- Static food content is stored as Markdown files with YAML frontmatter for human-friendly editing, version control compatibility, and static site generator support
 - Initial content focus is on Vietnamese street food; expansion to other cuisines is out of scope
 - Vietnamese (vi) serves as the default language for first-time visitors and as fallback when translations are unavailable
 - User accounts or personalization features are not required - all content is freely accessible
@@ -285,6 +295,10 @@ As a user who may have unreliable internet connectivity or want to reduce data u
 - Province boundaries and names follow the 2025 Vietnamese administrative reform (34 provinces and cities)
 - Eating time information reflects traditional Vietnamese dining customs, which may vary by region
 - Users' devices support modern web storage capabilities for offline caching
+- Platform officially supports modern browsers: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+ (released within last 2 years)
+- Platform targets WCAG 2.1 Level AA compliance for accessibility, including keyboard navigation, screen reader support, color contrast, and semantic HTML
+- Google Analytics is used for tracking user behavior and measuring success criteria; privacy policy and cookie consent requirements determined during planning phase
+- Initial launch targets 80% content completeness per item (SC-004 standard) with iterative improvements toward 100% completeness post-launch based on user feedback and content availability
 - Time-based recommendations use the user's local device time to provide personalized meal-time suggestions based on their current location
 - Eating time periods are defined in 24-hour format: morning (5:00-10:00), afternoon (10:00-15:00), evening (15:00-21:00), night (21:00-5:00)
 - Map interaction supports both click (desktop) and tap (mobile/tablet) inputs

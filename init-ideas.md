@@ -31,3 +31,5 @@ Such as: vietnames:end with .vi.hml https://domain/banh-trang-cuon-thit-heo.vi.h
 - one the home page, we can see the vietnam map, can select provice to display the list of food
 
 - during eating time period: home page can show the message "Bây giờ ăn gì?" and show relative food 
+
+- each food can avaiable on many periods time 

@@ -9,7 +9,8 @@
       "Bash(pwsh -NoProfile -ExecutionPolicy Bypass -File \".specify/scripts/powershell/check-prerequisites.ps1\" -Json -PathsOnly)",
       "Bash(git fetch:*)",
       "Bash(ls:*)",
-      "Bash(pwsh:*)"
+      "Bash(pwsh:*)",
+      "Bash(.specify/scripts/powershell/check-prerequisites.ps1 -Json -PathsOnly)"
     ]
   }
 }
