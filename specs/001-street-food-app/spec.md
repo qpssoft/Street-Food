@@ -2,7 +2,7 @@
 
 **Feature Branch**: `001-street-food-app`
 **Created**: 2026-01-08
-**Last Updated**: 2026-01-08
+**Last Updated**: 2026-01-08 (UX Clarification Completed)
 **Status**: Draft
 **Input**: User description: "Vietnamese street food discovery app with food information, images, recipes, locations, social media integration, multi-language support, time-based recommendations, province-based browsing via map, and offline access"
 
@@ -35,6 +35,25 @@
 - Expanded edge cases to cover dynamic theming and consumption method handling
 - Enhanced quality attributes for visual adaptability and contextual guidance
 - Added 10 assumptions about color extraction, template selection, and UI adaptation
+
+### UX Clarification Session 2026-01-08
+
+**Architecture Confirmation**: Platform consists of a main page (listing food and time-based suggestions) plus individual detail pages (each with specific HTML-based UI design).
+
+**Q1: How much of the page layout should change between consumption method templates?**
+→ A: Core layout elements remain consistent (70%) including navigation, brand header, and footer, while content sections adapt (30%) based on consumption method. This ensures brand consistency and usability while allowing meaningful visual differentiation.
+
+**Q2: What should happen when color extraction fails or produces colors that don't meet WCAG 2.1 AA contrast requirements?**
+→ A: System should use a default color palette mapped to food categories (e.g., warm tones for grilled foods, cool tones for fresh foods) as fallback. If extracted color fails contrast validation, automatically adjust to the nearest WCAG-compliant shade.
+
+**Q3: How should popularity rankings be visualized on food detail pages?**
+→ A: Use combination of visual indicators (star icons or badge graphics) plus numeric rank display (e.g., "#3 Most Popular"), integrated into the page header or hero section without overwhelming the primary content.
+
+**Q4: How should consumption guidance be presented within the adaptive UI?**
+→ A: Display as step-by-step inline cards or sections that flow naturally within the detail page, positioned after the main food description and before social media content. Use numbered steps with icons representing each action (e.g., unwrap, add condiments, fold, eat).
+
+**Q5: When dynamic theme colors are applied, how should the system handle users with color blindness or visual impairments?**
+→ A: All themes must pass WCAG 2.1 Level AA contrast requirements (4.5:1 for normal text, 3:1 for large text). Additionally, never rely solely on color to convey information—use text labels, icons, and patterns alongside color cues.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -195,13 +214,15 @@ As a user exploring Vietnamese street food, I want each food's presentation to v
 - What occurs when the user clicks on a province boundary (between two provinces) on the map?
 - How are foods associated with multiple provinces displayed on the map?
 - What happens when the user's device doesn't support offline storage capabilities?
-- What occurs when color extraction fails or produces a color that doesn't meet WCAG 2.1 AA contrast requirements?
-- How does the system handle foods that don't fit clearly into a single consumption method category?
-- What happens when consumption guidance is missing or incomplete for a food item?
-- How does the system adapt themes for users with color blindness or other visual impairments?
-- What occurs when a food has multiple equally valid eating methods (e.g., can be both takeaway and dine-in)?
-- How are popularity rankings displayed when multiple foods have the same ranking?
-- What happens when the food's main image changes and the theme color needs to be re-extracted?
+- What occurs when color extraction fails or produces a color that doesn't meet WCAG 2.1 AA contrast requirements? → Use fallback color palette mapped to food categories; auto-adjust extracted colors to nearest WCAG-compliant shade
+- How does the system handle foods that don't fit clearly into a single consumption method category? → Use "mixed" consumption method with hybrid template
+- What happens when consumption guidance is missing or incomplete for a food item? → Hide or minimize the consumption guidance section; display message that guidance will be added
+- How does the system adapt themes for users with color blindness or other visual impairments? → All themes meet WCAG 2.1 AA contrast (4.5:1 normal, 3:1 large text); never rely on color alone (use text, icons, patterns)
+- What occurs when a food has multiple equally valid eating methods (e.g., can be both takeaway and dine-in)? → Select primary consumption method for template, note alternative methods in content
+- How are popularity rankings displayed when multiple foods have the same ranking? → Show tied ranks (e.g., "#3 Most Popular" for all tied items), use secondary sorting criteria if needed
+- What happens when the food's main image changes and the theme color needs to be re-extracted? → Re-run color extraction during next content update cycle; maintain color consistency until new extraction completes
+- What happens when a food category has no defined fallback color? → Use a neutral default color palette (grays with brand accent colors)
+- How does the system maintain 70/30 layout consistency when foods have significantly different content lengths? → Core 70% layout uses flexible containers; adaptive 30% sections expand/contract based on content without breaking overall structure
 
 ## Requirements *(mandatory)*
 
@@ -256,7 +277,13 @@ As a user exploring Vietnamese street food, I want each food's presentation to v
 - **FR-041**: System MUST display consumption guidance integrated into the UI design, showing users the proper way to enjoy each food item
 - **FR-042**: System MUST adapt visual layout and interaction patterns based on food characteristics such as portability, eating complexity, and required utensils
 - **FR-043**: System MUST provide visual hierarchy that emphasizes food popularity ranking within the detail page design
-- **FR-044**: System MUST ensure all adaptive themes maintain WCAG 2.1 Level AA accessibility standards including sufficient color contrast ratios
+- **FR-044**: System MUST ensure all adaptive themes maintain WCAG 2.1 Level AA accessibility standards including sufficient color contrast ratios (4.5:1 for normal text, 3:1 for large text)
+- **FR-045**: System MUST maintain consistent core layout elements (navigation, brand header, footer) across all detail pages while allowing content sections to adapt based on consumption method (70% consistency, 30% adaptation)
+- **FR-046**: System MUST use a fallback color palette mapped to food categories when color extraction fails or produces non-WCAG-compliant colors
+- **FR-047**: System MUST automatically adjust extracted colors to the nearest WCAG 2.1 AA compliant shade when contrast requirements are not met
+- **FR-048**: System MUST display popularity rankings using both visual indicators (stars/badges) and numeric rank (e.g., "#3 Most Popular") in the page header or hero section
+- **FR-049**: System MUST present consumption guidance as step-by-step inline cards or sections positioned after main food description and before social media content, using numbered steps with action icons
+- **FR-050**: System MUST ensure information is conveyed through multiple channels (text labels, icons, patterns) alongside color to support users with color blindness or visual impairments
 
 #### Offline Access
 - **FR-029**: System MUST cache previously viewed content for offline access
@@ -285,7 +312,9 @@ As a user exploring Vietnamese street food, I want each food's presentation to v
 - **Province**: Represents a Vietnamese province or city (34 total as of 2025 reform) with attributes including name (multi-language), geographic boundaries, and associated food items
 - **Eating Time**: Represents time-of-day categories with defined hour ranges: morning (5:00-10:00), afternoon (10:00-15:00), evening (15:00-21:00), night (21:00-5:00), and anytime, with cultural context about when specific foods are traditionally consumed; foods can belong to multiple eating time periods
 - **Consumption Method**: Categorizes how food is typically consumed including takeaway (portable, eat while walking), dine-in (sit at table, requires utensils), street-side (standing/sitting on small stools), or mixed, affecting UI template selection
-- **UI Theme Configuration**: Stores visual presentation attributes including main color (extracted from food image), template type, color contrast validation status, and layout variations optimized for consumption method
+- **UI Theme Configuration**: Stores visual presentation attributes including main color (extracted from food image or from fallback palette), template type, color contrast validation status, layout variations optimized for consumption method, fallback category mapping, and contrast adjustment history
+- **Food Category**: Classification system for fallback color palette mapping including categories like grilled foods (warm tones), fresh foods (cool tones), fried foods, noodle dishes, rice dishes, desserts, and beverages
+- **Popularity Rank**: Numeric ranking of food items based on defined criteria (views, social media mentions, traditional significance) with associated visual indicator type (stars, badges) and display position
 - **Consumption Guidance**: Step-by-step instructions for proper enjoyment of food including preparation steps, eating techniques, traditional accompaniments, and cultural etiquette
 - **Offline Cache Entry**: Represents cached content with attributes including content identifier, cached timestamp, version identifier, and expiration status
 
@@ -310,10 +339,14 @@ As a user exploring Vietnamese street food, I want each food's presentation to v
 - **SC-015**: Time-based food recommendations display within 1 second of page load
 - **SC-021**: Home page displays the "Bây giờ ăn gì?" message with time-appropriate food suggestions during all eating time periods
 - **SC-022**: Platform passes WCAG 2.1 Level AA compliance validation with automated testing tools and manual accessibility audits
-- **SC-023**: 80% of food items have dynamic theme colors successfully extracted from primary images with WCAG 2.1 AA compliant contrast ratios
+- **SC-023**: 80% of food items have dynamic theme colors successfully extracted from primary images with WCAG 2.1 AA compliant contrast ratios (4.5:1 for normal text, 3:1 for large text)
 - **SC-024**: Each food detail page applies a consumption method-appropriate UI template that users can understand within 3 seconds of viewing
 - **SC-025**: 75% of food items include consumption guidance that users find helpful (measured through analytics engagement metrics)
 - **SC-026**: All adaptive UI themes maintain consistent brand identity while reflecting individual food characteristics
+- **SC-027**: 100% of detail pages maintain consistent core layout elements (navigation, brand header, footer) while adapting content sections based on consumption method
+- **SC-028**: Fallback color system successfully provides WCAG-compliant colors for 100% of cases where color extraction fails
+- **SC-029**: Popularity rankings are clearly visible and understandable on 100% of food detail pages that have ranking data
+- **SC-030**: Consumption guidance sections are positioned consistently and are easily discoverable within the content flow on all applicable pages
 - **SC-016**: Previously viewed content remains accessible offline with full fidelity
 - **SC-017**: Offline cache checks for updates on every app launch/visit when online and refreshes automatically within 5 seconds if updates are detected
 - **SC-018**: 100% of users can access all content without creating an account or logging in
@@ -358,11 +391,15 @@ As a user exploring Vietnamese street food, I want each food's presentation to v
 - Map interaction supports both click (desktop) and tap (mobile/tablet) inputs
 - Cache versioning and invalidation will be managed through content version identifiers (implementation details in planning phase)
 - Color extraction algorithms can reliably identify main colors from food images with sufficient accuracy for theme generation
-- All dynamically generated themes include fallback colors that meet WCAG 2.1 AA contrast requirements
+- All dynamically generated themes include fallback colors that meet WCAG 2.1 AA contrast requirements (4.5:1 for normal text, 3:1 for large text)
+- Fallback color palette is mapped to food categories with warm tones for grilled foods, cool tones for fresh foods, and category-appropriate colors for other food types
+- When extracted colors fail WCAG contrast validation, system can algorithmically adjust to the nearest compliant shade
 - Consumption methods can be categorized into distinct types (takeaway, dine-in, street-side, mixed) with clear UI template associations
 - Consumption guidance content is available or can be curated for the majority of featured foods
-- UI theme adaptations enhance rather than hinder user experience, with consistent navigation and interaction patterns across all themes
-- Popularity rankings are maintained and updated based on criteria to be defined during planning (e.g., views, social media mentions, traditional significance)
+- UI theme adaptations follow 70/30 principle: 70% consistent core layout (navigation, brand header, footer) and 30% adaptive content sections based on consumption method
+- Popularity rankings are maintained and updated based on defined criteria (views, social media mentions, traditional significance) and displayed using both visual indicators and numeric rank
+- Consumption guidance is presented as step-by-step inline content positioned after main food description, using numbered steps with action icons for clarity
+- Information design never relies solely on color to convey meaning, always using text labels, icons, and patterns alongside color cues for accessibility
 
 ## Out of Scope
 
