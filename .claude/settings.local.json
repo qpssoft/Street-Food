@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv --version:*)",
+      "Bash(uv tool install:*)",
+      "Bash(specify init:*)",
+      "Bash(export PYTHONIOENCODING=utf-8)",
+      "Bash(uvx:*)"
+    ]
+  }
+}
