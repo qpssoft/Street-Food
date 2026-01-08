@@ -6,6 +6,16 @@
 **Status**: Draft
 **Input**: User description: "Vietnamese street food discovery app with food information, images, recipes, locations, social media integration, multi-language support, time-based recommendations, province-based browsing via map, and offline access"
 
+## Clarifications
+
+### Session 2026-01-08
+
+- Q: What is the maximum offline cache size limit to prevent excessive device storage consumption? → A: 200 MB maximum cache size
+- Q: Which language should be the default/primary language for the platform? → A: Vietnamese (vi) as primary default language
+- Q: Should time-based food recommendations use the user's local time or Vietnam time? → A: User's local device time
+- Q: Which languages should be fully supported in the initial release? → A: Vietnamese, English, Chinese, Japanese, Korean (5 languages)
+- Q: What is the minimum image resolution required for food images to be considered "high-quality"? → A: 800x600 pixels minimum
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Browse Street Food Information (Priority: P1)
@@ -53,9 +63,9 @@ As an international user or Vietnamese learner, I want to view content in my pre
 **Acceptance Scenarios**:
 
 1. **Given** I visit the platform, **When** I select my preferred language, **Then** all static content (food names, descriptions, cooking methods) appears in that language
-2. **Given** content exists in multiple languages, **When** I access a food page via URL, **Then** the URL reflects the language (e.g., `/banh-trang-cuon-thit-heo.vi.html` for Vietnamese)
+2. **Given** content exists in multiple languages, **When** I access a food page via URL, **Then** the URL reflects the language (e.g., `/banh-trang-cuon-thit-heo.vi.html` for Vietnamese, `.en.html` for English, `.zh.html` for Chinese, `.ja.html` for Japanese, `.ko.html` for Korean)
 3. **Given** I am viewing content, **When** I switch languages, **Then** the page updates to show the equivalent content in the new language
-4. **Given** a translation doesn't exist, **When** I request content in an unavailable language, **Then** I see content in the default language with a notice about language availability
+4. **Given** a translation doesn't exist, **When** I request content in an unavailable language, **Then** I see content in the default Vietnamese language with a notice about language availability
 
 ---
 
@@ -139,7 +149,7 @@ As a user who may have unreliable internet connectivity or want to reduce data u
 - How does the system handle very long food names or descriptions across different languages?
 - What occurs when regional variations of the same food conflict in preparation methods or ingredients?
 - What happens when a province has no associated food items or very few items?
-- How does the system determine current time for time-based recommendations (user's local time vs. Vietnam time)?
+- How does the system handle time-based recommendations for users in significantly different time zones from Vietnam?
 - What occurs when a food has no specific eating time preference (eaten at any time)?
 - What happens when offline cache becomes stale or corrupted?
 - How does the system behave when storage quota is exceeded for offline caching?
@@ -158,51 +168,52 @@ As a user who may have unreliable internet connectivity or want to reduce data u
 - **FR-004**: System MUST display a random selection of food items on the home page to inspire user exploration
 
 #### Multi-Language Support
-- **FR-005**: System MUST support multiple languages with language-specific URLs (e.g., `.vi.html` for Vietnamese, `.en.html` for English)
+- **FR-005**: System MUST support five languages: Vietnamese (vi), English (en), Chinese (zh), Japanese (ja), and Korean (ko) with language-specific URLs (e.g., `.vi.html`, `.en.html`, `.zh.html`, `.ja.html`, `.ko.html`)
 - **FR-006**: System MUST maintain static content in multiple language versions for SEO optimization
 - **FR-007**: System MUST allow users to switch between available languages while browsing
 - **FR-008**: System MUST use language codes in URLs to support search engine indexing
+- **FR-009**: System MUST use Vietnamese (vi) as the default language when users first visit or when requested content is unavailable in the user's selected language
 
 #### Location & Purchase Information
-- **FR-009**: System MUST display geographic information about where each food is traditionally found or commonly sold
-- **FR-010**: System MUST provide information about online purchasing options or delivery services when available
-- **FR-011**: System MUST show regions, cities, or markets famous for specific street food items
+- **FR-010**: System MUST display geographic information about where each food is traditionally found or commonly sold
+- **FR-011**: System MUST provide information about online purchasing options or delivery services when available
+- **FR-012**: System MUST show regions, cities, or markets famous for specific street food items
 
 #### Social Media Integration
-- **FR-012**: System MUST integrate dynamic content from social networks including YouTube, Facebook, TikTok, and X (Twitter)
-- **FR-013**: System MUST display or link to relevant social media content related to each food item
-- **FR-014**: System MUST handle social media content failures gracefully without breaking core functionality
+- **FR-013**: System MUST integrate dynamic content from social networks including YouTube, Facebook, TikTok, and X (Twitter)
+- **FR-014**: System MUST display or link to relevant social media content related to each food item
+- **FR-015**: System MUST handle social media content failures gracefully without breaking core functionality
 
 #### Content Management
-- **FR-015**: System MUST store static food information (descriptions, images, cooking methods, history) in a structured format
-- **FR-016**: System MUST distinguish between static content (food data) and dynamic content (social media feeds)
-- **FR-017**: System MUST support high-quality food images for each item
+- **FR-016**: System MUST store static food information (descriptions, images, cooking methods, history) in a structured format
+- **FR-017**: System MUST distinguish between static content (food data) and dynamic content (social media feeds)
+- **FR-018**: System MUST support high-quality food images with a minimum resolution of 800x600 pixels for each item
 
 #### Geographic Discovery
-- **FR-018**: System MUST display an interactive map of Vietnam on the home page showing province boundaries
-- **FR-019**: System MUST allow users to select provinces on the map through click/tap interactions
-- **FR-020**: System MUST filter and display food items associated with a selected province
-- **FR-021**: System MUST associate each food item with one or more provinces where it is traditionally found or popular
-- **FR-022**: System MUST handle provinces with no associated food items gracefully with appropriate messaging
+- **FR-019**: System MUST display an interactive map of Vietnam on the home page showing province boundaries
+- **FR-020**: System MUST allow users to select provinces on the map through click/tap interactions
+- **FR-021**: System MUST filter and display food items associated with a selected province
+- **FR-022**: System MUST associate each food item with one or more provinces where it is traditionally found or popular
+- **FR-023**: System MUST handle provinces with no associated food items gracefully with appropriate messaging
 
 #### Time-Based Recommendations
-- **FR-023**: System MUST store eating time information for each food item (morning, afternoon, evening, night, anytime)
-- **FR-024**: System MUST detect the current time when users access the platform
-- **FR-025**: System MUST display or highlight foods appropriate for the current time of day
-- **FR-026**: System MUST allow users to filter or browse foods by specific eating times
-- **FR-027**: System MUST show time-of-day information on food detail pages
+- **FR-024**: System MUST store eating time information for each food item (morning, afternoon, evening, night, anytime)
+- **FR-025**: System MUST detect the current time from the user's local device when users access the platform
+- **FR-026**: System MUST display or highlight foods appropriate for the current time of day based on user's local time
+- **FR-027**: System MUST allow users to filter or browse foods by specific eating times
+- **FR-028**: System MUST show time-of-day information on food detail pages
 
 #### Offline Access
-- **FR-028**: System MUST cache previously viewed content for offline access
-- **FR-029**: System MUST allow users to access cached content when internet connectivity is unavailable
-- **FR-030**: System MUST detect when content has been updated online and refresh cached versions when connectivity is restored
-- **FR-031**: System MUST inform users when attempting to access non-cached content while offline
-- **FR-032**: System MUST manage cache storage to prevent excessive device storage consumption
-- **FR-033**: System MUST handle cache invalidation when new versions of content become available
+- **FR-029**: System MUST cache previously viewed content for offline access
+- **FR-030**: System MUST allow users to access cached content when internet connectivity is unavailable
+- **FR-031**: System MUST detect when content has been updated online and refresh cached versions when connectivity is restored
+- **FR-032**: System MUST inform users when attempting to access non-cached content while offline
+- **FR-033**: System MUST manage cache storage to prevent excessive device storage consumption, enforcing a maximum cache size of 200 MB
+- **FR-034**: System MUST handle cache invalidation when new versions of content become available
 
 #### Universal Access
-- **FR-034**: System MUST allow all users to access full content without requiring authentication or account creation
-- **FR-035**: System MUST not implement any paywalls or content restrictions based on user accounts
+- **FR-035**: System MUST allow all users to access full content without requiring authentication or account creation
+- **FR-036**: System MUST not implement any paywalls or content restrictions based on user accounts
 
 ### Key Entities
 
@@ -223,8 +234,8 @@ As a user who may have unreliable internet connectivity or want to reduce data u
 
 - **SC-001**: Users can discover and view detailed information about at least 20 distinct Vietnamese street food items within the first release
 - **SC-002**: Content loads asynchronously with perceived loading time under 2 seconds for food detail pages
-- **SC-003**: At least 3 languages are fully supported with complete translations for all static content
-- **SC-004**: 80% of food items include high-quality images, complete ingredient lists, and cooking method descriptions
+- **SC-003**: Five languages are fully supported (Vietnamese, English, Chinese, Japanese, Korean) with complete translations for all static content
+- **SC-004**: 80% of food items include high-quality images (minimum 800x600 pixels), complete ingredient lists, and cooking method descriptions
 - **SC-005**: Users can successfully navigate from discovery to location/purchase information in under 3 clicks
 - **SC-006**: Social media integration displays relevant content for at least 60% of featured food items
 - **SC-007**: Multi-language URLs are properly formatted and indexed for search engine optimization
@@ -239,7 +250,7 @@ As a user who may have unreliable internet connectivity or want to reduce data u
 - **SC-016**: Previously viewed content remains accessible offline with full fidelity
 - **SC-017**: Offline cache refreshes automatically within 5 seconds of regaining connectivity
 - **SC-018**: 100% of users can access all content without creating an account or logging in
-- **SC-019**: Cache storage consumption does not exceed reasonable limits (to be defined based on average content size)
+- **SC-019**: Cache storage consumption does not exceed 200 MB maximum limit
 - **SC-020**: Users can access at least 10 previously viewed food items while completely offline
 
 ### Quality Attributes
@@ -247,7 +258,7 @@ As a user who may have unreliable internet connectivity or want to reduce data u
 - **Accessibility**: Content is readable and images have descriptive alternatives for visually impaired users
 - **SEO Performance**: Multi-language pages are indexable by search engines with proper metadata
 - **Cultural Accuracy**: Food information reflects authentic Vietnamese culinary traditions, regional variations, and eating time customs
-- **Visual Quality**: Images meet minimum resolution standards and accurately represent the food items
+- **Visual Quality**: Images meet minimum resolution standards (800x600 pixels) and accurately represent the food items
 - **Load Performance**: Asynchronous content loading improves perceived performance without blocking user interaction
 - **Geographic Accuracy**: Province boundaries and food-province associations reflect accurate Vietnamese geography and culinary traditions
 - **Offline Reliability**: Cached content remains stable and accessible during extended offline periods
@@ -260,13 +271,14 @@ As a user who may have unreliable internet connectivity or want to reduce data u
 - Social media platforms will maintain publicly accessible content via their APIs or embed codes
 - Content will be curated or sourced through manual input or automated crawlers (implementation method to be determined in planning)
 - Initial content focus is on Vietnamese street food; expansion to other cuisines is out of scope
+- Vietnamese (vi) serves as the default language for first-time visitors and as fallback when translations are unavailable
 - User accounts or personalization features are not required - all content is freely accessible
 - Location information is informational only; real-time inventory or reservation systems are out of scope
 - Content moderation for user-generated content is not required as initial version focuses on curated static content
 - Province boundaries and names follow official Vietnamese administrative divisions
 - Eating time information reflects traditional Vietnamese dining customs, which may vary by region
 - Users' devices support modern web storage capabilities for offline caching
-- Time detection uses the user's device time (implementation may optionally support Vietnam timezone conversion)
+- Time-based recommendations use the user's local device time to provide personalized meal-time suggestions based on their current location
 - Map interaction supports both click (desktop) and tap (mobile/tablet) inputs
 - Cache versioning and invalidation will be managed through content version identifiers (implementation details in planning phase)
 
