@@ -55,6 +55,14 @@
 **Q5: When dynamic theme colors are applied, how should the system handle users with color blindness or visual impairments?**
 → A: All themes must pass WCAG 2.1 Level AA contrast requirements (4.5:1 for normal text, 3:1 for large text). Additionally, never rely solely on color to convey information—use text labels, icons, and patterns alongside color cues.
 
+### Final Implementation Clarification Session 2026-01-08
+
+- Q: Which static site generator should be used for GitHub Pages deployment to meet Constitution v1.1.0 performance budgets (mobile FCP <1.8s, LCP <2.5s, Lighthouse 90+)? → A: Astro (modern framework with component islands architecture, excellent performance, requires custom GitHub Actions build workflow)
+- Q: How should food items be uniquely identified across 5 languages and 34 provinces for URL routing and content organization? → A: Slug-based with language prefix (Vietnamese name slugified as canonical ID, e.g., `banh-mi`, with language-prefixed URLs like `/en/banh-mi.html`, `/vi/banh-mi.html` for SEO optimization)
+- Q: Should the specification performance targets match Constitution v1.1.0 mobile-first Core Web Vitals (FCP <1.8s, LCP <2.5s, TTI <3.8s) or keep generic "2 seconds page load"? → A: Update SC-002 with mobile-first Core Web Vitals to align with constitutional requirements and ensure testability
+- Q: Where will province boundary geographic data for the interactive Vietnam map come from? → A: Hybrid approach (self-hosted GeoJSON for province boundaries committed to git repository + optional third-party basemap tiles for visual enhancement; balances control, simplicity, offline capability, and visual quality)
+- Q: How should the cultural authenticity review process be structured to balance Constitution v1.1.0 Principle V requirements with Simplicity & Iteration principles? → A: Hybrid gates approach (P1 features require Vietnamese food culture expert review and native speaker translation verification before publishing; P2/P3 features use staged review with iterative improvements post-launch; balances quality assurance with launch velocity)
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Browse Street Food Information (Priority: P1)
@@ -235,10 +243,10 @@ As a user exploring Vietnamese street food, I want each food's presentation to v
 - **FR-004**: System MUST display a random selection of 6 food items on the home page to inspire user exploration
 
 #### Multi-Language Support
-- **FR-005**: System MUST support five languages: Vietnamese (vi), English (en), Chinese (zh), Japanese (ja), and Korean (ko) with language-specific URLs (e.g., `.vi.html`, `.en.html`, `.zh.html`, `.ja.html`, `.ko.html`)
+- **FR-005**: System MUST support five languages: Vietnamese (vi), English (en), Chinese (zh), Japanese (ja), and Korean (ko) with language-prefixed URLs using slug-based identifiers (e.g., `/vi/banh-mi.html`, `/en/banh-mi.html`, `/zh/banh-mi.html`, `/ja/banh-mi.html`, `/ko/banh-mi.html`)
 - **FR-006**: System MUST maintain static content in multiple language versions for SEO optimization
 - **FR-007**: System MUST allow users to switch between available languages while browsing
-- **FR-008**: System MUST use language codes in URLs to support search engine indexing
+- **FR-008**: System MUST use Vietnamese food name as canonical slug identifier (with diacritics removed and spaces replaced with hyphens) combined with language-prefix URLs to support search engine indexing and human-readable URLs
 - **FR-009**: System MUST use Vietnamese (vi) as the default language when users first visit or when requested content is unavailable in the user's selected language
 
 #### Location & Purchase Information
@@ -302,7 +310,7 @@ As a user exploring Vietnamese street food, I want each food's presentation to v
 
 ### Key Entities
 
-- **Street Food Item**: Represents a Vietnamese street food dish with attributes including name (multi-language), description, origin story, cultural significance, traditional preparation region, associated customs or events, multiple eating time periods, province associations, consumption method, popularity ranking, main color theme, and consumption guidance
+- **Street Food Item**: Represents a Vietnamese street food dish with attributes including canonical slug identifier (derived from Vietnamese name, e.g., `banh-mi`), name (multi-language), description, origin story, cultural significance, traditional preparation region, associated customs or events, multiple eating time periods, province associations, consumption method, popularity ranking, main color theme, and consumption guidance
 - **Ingredient/Material**: Represents components used in food preparation including name, quantity, preparation notes, and regional variations
 - **Cooking Method**: Step-by-step preparation instructions with techniques, timing, equipment needs, and skill level
 - **Location Reference**: Geographic information including country, region, city, district, market names, and vendor types where food is commonly found
@@ -323,7 +331,7 @@ As a user exploring Vietnamese street food, I want each food's presentation to v
 ### Measurable Outcomes
 
 - **SC-001**: Users can discover and view detailed information about at least 20 distinct Vietnamese street food items at launch, with each item meeting the 80% completeness standard defined in SC-004
-- **SC-002**: Content loads asynchronously with perceived loading time under 2 seconds for food detail pages
+- **SC-002**: Content loads asynchronously meeting mobile-first Core Web Vitals performance budgets (Constitution v1.1.0 Principle IV): Mobile 4G targets (PRIMARY) - First Contentful Paint (FCP) <1.8s, Largest Contentful Paint (LCP) <2.5s, Time to Interactive (TTI) <3.8s; Desktop targets (SECONDARY) - FCP <1.2s, LCP <1.8s, TTI <2.5s; measured via Lighthouse CI on every pull request with mobile score 90+ and desktop score 95+ required for merge
 - **SC-003**: Five languages are fully supported (Vietnamese, English, Chinese, Japanese, Korean) with complete translations for all static content
 - **SC-004**: 80% of food items include high-quality images (minimum 800x600 pixels), complete ingredient lists, and cooking method descriptions; this represents the minimum completeness bar for launch, with iterative improvements toward 100% completeness post-launch
 - **SC-005**: Users can successfully navigate from discovery to location/purchase information in under 3 clicks
@@ -373,12 +381,16 @@ As a user exploring Vietnamese street food, I want each food's presentation to v
 - Social media platforms will maintain publicly accessible content via their APIs or embed codes
 - Content will be curated or sourced through manual input or automated crawlers (implementation method to be determined in planning)
 - Static food content is stored as Markdown files with YAML frontmatter for human-friendly editing, version control compatibility, and static site generator support
+- Astro static site generator will be used for build process with GitHub Actions workflow for GitHub Pages deployment, providing component islands architecture, excellent mobile performance (FCP <1.8s, LCP <2.5s targets), and modern image optimization
+- Food items use slug-based identifiers derived from Vietnamese names with language-prefixed URLs (e.g., `/vi/banh-mi.html`, `/en/banh-mi.html`) for SEO optimization and human-readable routes
 - Initial content focus is on Vietnamese street food; expansion to other cuisines is out of scope
 - Vietnamese (vi) serves as the default language for first-time visitors and as fallback when translations are unavailable
 - User accounts or personalization features are not required - all content is freely accessible
 - Location information is informational only; real-time inventory or reservation systems are out of scope
 - Content moderation for user-generated content is not required as initial version focuses on curated static content
+- Cultural authenticity review follows hybrid gates approach: P1 features (core food browsing, province map) require Vietnamese food culture expert review and native speaker translation verification before publishing; P2/P3 features (time-based recommendations, offline access, social media integration) use staged review with iterative improvements post-launch; this balances Constitution v1.1.0 Principle V quality requirements with Principle VI simplicity and iteration principles
 - Province boundaries and names follow the 2025 Vietnamese administrative reform (34 provinces and cities)
+- Province boundary geographic data uses hybrid approach: self-hosted GeoJSON files committed to git repository for boundary shapes with optional third-party basemap tiles for visual enhancement, balancing control, simplicity, offline capability, and visual quality
 - Eating time information reflects traditional Vietnamese dining customs, which may vary by region
 - Users' devices support modern web storage capabilities for offline caching
 - Platform officially supports modern browsers: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+ (released within last 2 years)
