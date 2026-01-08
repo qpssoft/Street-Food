@@ -5,7 +5,11 @@
       "Bash(uv tool install:*)",
       "Bash(specify init:*)",
       "Bash(export PYTHONIOENCODING=utf-8)",
-      "Bash(uvx:*)"
+      "Bash(uvx:*)",
+      "Bash(pwsh -NoProfile -ExecutionPolicy Bypass -File \".specify/scripts/powershell/check-prerequisites.ps1\" -Json -PathsOnly)",
+      "Bash(git fetch:*)",
+      "Bash(ls:*)",
+      "Bash(pwsh:*)"
     ]
   }
 }
