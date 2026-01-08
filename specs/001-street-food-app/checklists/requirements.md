@@ -49,14 +49,14 @@ All checklist items have been validated and the specification meets quality stan
 - Success criteria include measurable metrics (SC-002: "under 2 seconds", SC-003: "at least 3 languages", SC-012: "Province selection filters food lists in under 1 second", SC-020: "at least 10 previously viewed food items while completely offline")
 - Success criteria are technology-agnostic (focused on user experience and outcomes, not implementation)
 - 7 prioritized user stories with acceptance scenarios in Given/When/Then format
-- 15 edge cases identified covering incomplete data, language handling, integration failures, content loading issues, province boundaries, time detection, offline caching, and storage limits
+- 16 edge cases identified covering incomplete data, language handling, integration failures, content loading issues, province boundaries, time detection, time-based message display, offline caching, and storage limits
 - Scope clearly defined with detailed "Out of Scope" section distinguishing what is excluded vs. what is included (e.g., interactive province map in scope, GPS navigation out of scope)
 - Assumptions section documents 13 key assumptions about connectivity, content sources, feature boundaries, province boundaries, eating customs, device capabilities, and time detection
 
 **Feature Readiness**:
-- 35 functional requirements grouped by category (Content Display, Multi-Language Support, Location & Purchase, Social Media Integration, Content Management, Geographic Discovery, Time-Based Recommendations, Offline Access, Universal Access)
+- 37 functional requirements grouped by category (Content Display, Multi-Language Support, Location & Purchase, Social Media Integration, Content Management, Geographic Discovery, Time-Based Recommendations, Offline Access, Universal Access)
 - User scenarios prioritized (P1-P2) with clear rationale and independent testability
-- 20 measurable success criteria plus 9 quality attributes
+- 21 measurable success criteria plus 9 quality attributes
 - Specification is implementation-agnostic and ready for planning phase
 
 ## Notes
@@ -89,7 +89,7 @@ The specification successfully transforms the initial idea and subsequent update
 
 5. **Cultural Authenticity**: Eating time information and province associations respect Vietnamese culinary traditions
 
-**Recent Updates (2026-01-08)**:
+**Recent Updates (2026-01-08 - Initial Specification)**:
 - Added User Story 5: Province-based browsing via interactive map (P1)
 - Added User Story 6: Time-appropriate food discovery (P2)
 - Added User Story 7: Offline content access (P2)
@@ -100,4 +100,11 @@ The specification successfully transforms the initial idea and subsequent update
 - Expanded assumptions from 7 to 13
 - Updated out-of-scope section to clarify boundaries
 
-**Recommendation**: ✅ Ready to proceed to `/speckit.clarify` to resolve any remaining ambiguities, or directly to `/speckit.plan` for implementation planning.
+**Additional Updates (2026-01-08 - After Clarification)**:
+- Added FR-037: Home page displays "Bây giờ ăn gì?" message with time-appropriate food during eating periods
+- Updated User Story 6 acceptance scenario 2 to include the "Bây giờ ăn gì?" message feature
+- Added SC-021: Home page displays Vietnamese message with time-based suggestions
+- Added edge case: Handling when no foods available for current eating time period
+- Specification now includes 37 functional requirements and 21 success criteria
+
+**Recommendation**: ✅ Ready to proceed to `/speckit.plan` for implementation planning.

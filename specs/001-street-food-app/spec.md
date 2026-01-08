@@ -119,7 +119,7 @@ As a user planning meals or curious about eating traditions, I want to see which
 **Acceptance Scenarios**:
 
 1. **Given** I am viewing a street food item, **When** I access its details, **Then** I see information about the best time(s) of day to eat this food (e.g., morning, afternoon, evening, night, anytime)
-2. **Given** I visit the platform at a specific time, **When** the page loads, **Then** I see recommendations or filters for foods typically eaten at the current time of day
+2. **Given** I visit the platform at a specific time, **When** the home page loads, **Then** I see the message "Bây giờ ăn gì?" ("What should I eat now?") with food items appropriate for the current time period
 3. **Given** I want to plan for a specific meal time, **When** I filter or browse foods, **Then** I can view foods categorized by eating time (breakfast foods, lunch foods, evening snacks, etc.)
 4. **Given** a food can be eaten anytime, **When** I view its time information, **Then** I see it marked as "suitable for any time" or similar indication
 
@@ -155,6 +155,7 @@ As a user who may have unreliable internet connectivity or want to reduce data u
 - What happens when a province has no associated food items or very few items?
 - How does the system handle time-based recommendations for users in significantly different time zones from Vietnam?
 - What occurs when a food has no specific eating time preference (eaten at any time)?
+- What happens when no foods are available for the current eating time period when displaying the "Bây giờ ăn gì?" message?
 - What happens when offline cache becomes stale or corrupted?
 - How does the system behave when storage quota is exceeded for offline caching?
 - What occurs when the user clicks on a province boundary (between two provinces) on the map?
@@ -206,6 +207,7 @@ As a user who may have unreliable internet connectivity or want to reduce data u
 - **FR-026**: System MUST display or highlight foods appropriate for the current time of day based on user's local time and the defined time periods
 - **FR-027**: System MUST allow users to filter or browse foods by specific eating times
 - **FR-028**: System MUST show time-of-day information on food detail pages
+- **FR-037**: System MUST display the message "Bây giờ ăn gì?" ("What should I eat now?") on the home page during eating time periods and show food items appropriate for the current time
 
 #### Offline Access
 - **FR-029**: System MUST cache previously viewed content for offline access
@@ -251,6 +253,7 @@ As a user who may have unreliable internet connectivity or want to reduce data u
 - **SC-013**: At least 70% of food items are associated with specific provinces
 - **SC-014**: 75% of food items include eating time information (morning, afternoon, evening, night, or anytime)
 - **SC-015**: Time-based food recommendations display within 1 second of page load
+- **SC-021**: Home page displays the "Bây giờ ăn gì?" message with time-appropriate food suggestions during all eating time periods
 - **SC-016**: Previously viewed content remains accessible offline with full fidelity
 - **SC-017**: Offline cache checks for updates on every app launch/visit when online and refreshes automatically within 5 seconds if updates are detected
 - **SC-018**: 100% of users can access all content without creating an account or logging in

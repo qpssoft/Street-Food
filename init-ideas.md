@@ -29,3 +29,5 @@ Such as: vietnames:end with .vi.hml https://domain/banh-trang-cuon-thit-heo.vi.h
 - Everyone can acces that that app see fully information
 - support the ofline access, we an caching data ther unil have new version or file or information
 - one the home page, we can see the vietnam map, can select provice to display the list of food
+
+- during eating time period: home page can show the message "Bây giờ ăn gì?" and show relative food 
