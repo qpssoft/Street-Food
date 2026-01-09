@@ -1,0 +1,104 @@
+import { defineCollection, z } from 'astro:content';
+
+/**
+ * Content Collections Schema for Vietnamese Street Food Discovery Platform
+ *
+ * This schema defines the structure and validation rules for all food item content.
+ * Based on data-model.md and Constitution Principle I (Content-First Architecture).
+ */
+
+const foodsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    // ===== Identifiers =====
+    lang: z.enum(['vi', 'en', 'zh', 'ja', 'ko']).describe('Language code'),
+    slug: z
+      .string()
+      .regex(/^[a-z0-9-]+$/, 'Slug must be lowercase alphanumeric with hyphens only')
+      .describe('Canonical slug (Vietnamese name, diacritics removed)'),
+
+    // ===== Basic Information =====
+    name: z
+      .string()
+      .min(1, 'Name is required')
+      .max(100, 'Name must be 100 characters or less')
+      .describe('Food name in current language'),
+    description: z
+      .string()
+      .min(10, 'Description must be at least 10 characters')
+      .max(500, 'Description must be 500 characters or less')
+      .describe('Brief description (1-2 sentences)'),
+
+    // ===== Detailed Content =====
+    ingredients: z
+      .array(z.string())
+      .min(1, 'At least one ingredient is required')
+      .describe('List of ingredients/materials'),
+    cookingMethod: z
+      .string()
+      .min(10, 'Cooking method must be at least 10 characters')
+      .describe('Preparation instructions'),
+    culturalHistory: z.string().optional().describe('Origin story and cultural significance'),
+
+    // ===== Classification =====
+    category: z
+      .enum(['grilled', 'fresh', 'fried', 'noodle', 'rice', 'dessert', 'beverage'])
+      .describe('Food category for fallback color palette'),
+    consumptionMethod: z
+      .enum(['takeaway', 'dine-in', 'street-side', 'mixed'])
+      .describe('Primary consumption method'),
+
+    // ===== Geographic & Temporal Associations =====
+    province: z
+      .array(z.string())
+      .min(1, 'At least one province is required')
+      .max(10, 'Maximum 10 provinces allowed')
+      .describe('Associated provinces (Vietnamese names)'),
+    eatingTime: z
+      .array(z.enum(['morning', 'afternoon', 'evening', 'night', 'anytime']))
+      .min(1, 'At least one eating time is required')
+      .describe('Recommended eating times'),
+
+    // ===== Visual Assets =====
+    image: z.string().describe('Relative path to primary image (e.g., "main.jpg")'),
+    imageAlt: z.string().describe('Alt text for accessibility (WCAG 2.1 AA)'),
+
+    // ===== Social Media Integration (Optional) =====
+    socialMedia: z
+      .object({
+        youtube: z.string().url('Invalid YouTube URL').optional(),
+        facebook: z.string().url('Invalid Facebook URL').optional(),
+        tiktok: z.string().url('Invalid TikTok URL').optional(),
+        x: z.string().url('Invalid X (Twitter) URL').optional(),
+      })
+      .optional()
+      .describe('Social media content URLs'),
+
+    // ===== Consumption Guidance (Optional) =====
+    consumptionGuidance: z
+      .array(
+        z.object({
+          step: z.number().int().positive().describe('Step number (1, 2, 3, ...)'),
+          instruction: z.string().describe('Instruction text'),
+          icon: z.string().optional().describe('Icon name (optional)'),
+        })
+      )
+      .optional()
+      .describe('Step-by-step consumption guidance'),
+
+    // ===== Popularity Ranking (Optional) =====
+    popularityRank: z
+      .number()
+      .int()
+      .positive()
+      .optional()
+      .describe('Numeric ranking (1 = most popular)'),
+  }),
+});
+
+/**
+ * Export all content collections
+ */
+export const collections = {
+  foods: foodsCollection,
+};

@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Constitution Principle VIII: Code Quality Standards
+# Run lint-staged to check staged files before commit
+
+npx lint-staged

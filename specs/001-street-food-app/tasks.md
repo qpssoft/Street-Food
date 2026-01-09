@@ -140,20 +140,20 @@ Within each story, tasks marked `[P]` can run in parallel.
 
 ### Tasks
 
-- [ ] T010 Create Astro configuration file (astro.config.mjs) with GitHub Pages settings, image optimization, and build options
-- [ ] T011 [P] Configure TypeScript (tsconfig.json) for Astro Content Collections and strict type checking
-- [ ] T012 [P] Create base package.json scripts: dev, build, preview, test, lint, format
-- [ ] T013 [P] Configure ESLint (.eslintrc.js) and Prettier (.prettierrc) per Constitution Principle VIII
-- [ ] T014 Define Content Collections schema in src/content/config.ts with Zod validation for Street Food Item entity
-- [ ] T015 Create base HTML layout in src/layouts/BaseLayout.astro with mobile-first responsive structure
-- [ ] T016 Create global styles in src/styles/global.css with CSS reset, mobile-first breakpoints (320px-428px primary)
-- [ ] T017 Create typography styles in src/styles/typography.css with 16px minimum mobile font size
-- [ ] T018 [P] Create accessibility styles in src/styles/accessibility.css for WCAG 2.1 AA compliance (focus indicators, skip links)
-- [ ] T019 [P] Configure Astro Image service with sharp for build-time optimization in astro.config.mjs
-- [ ] T020 [P] Create responsive image utility component in src/components/ui/ResponsiveImage.astro with WebP/JPEG fallback
-- [ ] T021 Create slug generation utility in src/lib/slug-generator.ts to convert Vietnamese names to URL-safe slugs
-- [ ] T022 Set up Git pre-commit hooks with Husky for ESLint and Prettier validation
-- [ ] T023 Create .env.example file with environment variable templates (SITE_URL, PUBLIC_GOOGLE_ANALYTICS_ID)
+- [X] T010 Create Astro configuration file (astro.config.mjs) with GitHub Pages settings, image optimization, and build options
+- [X] T011 [P] Configure TypeScript (tsconfig.json) for Astro Content Collections and strict type checking
+- [X] T012 [P] Create base package.json scripts: dev, build, preview, test, lint, format
+- [X] T013 [P] Configure ESLint (eslint.config.js) and Prettier (.prettierrc) per Constitution Principle VIII
+- [X] T014 Define Content Collections schema in src/content/config.ts with Zod validation for Street Food Item entity
+- [X] T015 Create base HTML layout in src/layouts/BaseLayout.astro with mobile-first responsive structure
+- [X] T016 Create global styles in src/styles/global.css with CSS reset, mobile-first breakpoints (320px-428px primary)
+- [X] T017 Create typography styles in src/styles/typography.css with 16px minimum mobile font size
+- [X] T018 [P] Create accessibility styles in src/styles/accessibility.css for WCAG 2.1 AA compliance (focus indicators, skip links)
+- [X] T019 [P] Configure Astro Image service with sharp for build-time optimization in astro.config.mjs
+- [X] T020 [P] Create responsive image utility component in src/components/ui/ResponsiveImage.astro with WebP/JPEG fallback
+- [X] T021 Create slug generation utility in src/lib/slug-generator.ts to convert Vietnamese names to URL-safe slugs
+- [X] T022 Set up Git pre-commit hooks with Husky for ESLint and Prettier validation
+- [X] T023 Create .env.example file with environment variable templates (SITE_URL, PUBLIC_GOOGLE_ANALYTICS_ID)
 
 **Phase 2 Complete**: Core infrastructure ready for all user stories.
 

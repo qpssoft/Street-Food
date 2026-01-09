@@ -33,3 +33,6 @@ Such as: vietnames:end with .vi.hml https://domain/banh-trang-cuon-thit-heo.vi.h
 - during eating time period: home page can show the message "Bây giờ ăn gì?" and show relative food 
 
 - each food can avaiable on many periods time 
+- each food detail has different theme, designs depending on main color of that food, content, introduction, image, ranking on famous
+
+- the UI template for each food must be focus on user experience, trending design, such as that food only for takeaway like bread, so make the UI for food detail more suitable and frendly for user expericene, User can know how to use that food on correct way. another example "Bánn cuốn" we need to stay on table, and doing more action before eating them, so the detail of that food also need to have specific design for kind of that food

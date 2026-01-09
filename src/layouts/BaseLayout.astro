@@ -1,0 +1,159 @@
+---
+/**
+ * BaseLayout Component
+ *
+ * Mobile-first responsive layout serving as the foundation for all pages.
+ * Constitution Principle IX: Mobile-first design (320px-428px primary viewport).
+ * Constitution Principle III: WCAG 2.1 AA accessibility compliance.
+ */
+
+interface Props {
+  title: string;
+  description?: string;
+  lang?: 'vi' | 'en' | 'zh' | 'ja' | 'ko';
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = 'Khám phá ẩm thực đường phố Việt Nam - Discover Vietnamese Street Food',
+  lang = 'vi',
+  ogImage = '/og-image.jpg',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const fullTitle = `${title} | Vietnamese Street Food`;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+
+    <!-- Canonical URL for SEO -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={fullTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#FF6B35" />
+
+    <!-- iOS Safari specific -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <!-- Performance: DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+    <title>{fullTitle}</title>
+
+    <!-- Global Styles: Inlined critical CSS for FCP optimization -->
+    <style is:global>
+      @import '@styles/global.css';
+      @import '@styles/typography.css';
+      @import '@styles/accessibility.css';
+    </style>
+  </head>
+  <body>
+    <!-- Skip to Main Content Link (WCAG 2.1 AA) -->
+    <a href="#main-content" class="skip-link">
+      {lang === 'vi' ? 'Bỏ qua đến nội dung chính' : 'Skip to main content'}
+    </a>
+
+    <!-- Header: Will be implemented in Phase 3 -->
+    <header class="site-header">
+      <nav class="site-nav" aria-label="Main navigation">
+        <!-- Navigation will be added in Phase 3 -->
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+
+    <!-- Footer: Will be implemented in Phase 3 -->
+    <footer class="site-footer">
+      <p class="footer-text">
+        {lang === 'vi' ? '© 2026 Ẩm thực đường phố Việt Nam' : '© 2026 Vietnamese Street Food'}
+      </p>
+    </footer>
+
+    <!-- Service Worker Registration (Phase 9: Offline Access) -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          // Service Worker will be registered in Phase 9
+          // navigator.serviceWorker.register('/sw.js');
+        });
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+  /* Mobile-first responsive structure (320px-428px primary) */
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  main {
+    flex: 1;
+    width: 100%;
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: var(--spacing-4) var(--spacing-3);
+  }
+
+  .site-footer {
+    margin-top: auto;
+    padding: var(--spacing-4) var(--spacing-3);
+    background-color: var(--color-surface-alt);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .footer-text {
+    text-align: center;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  /* Tablet and Desktop (min-width: 768px) */
+  @media (min-width: 768px) {
+    main {
+      padding: var(--spacing-6) var(--spacing-4);
+    }
+  }
+</style>

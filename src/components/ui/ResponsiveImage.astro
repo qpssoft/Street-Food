@@ -1,0 +1,88 @@
+---
+/**
+ * ResponsiveImage Component
+ *
+ * Optimized responsive image with WebP/AVIF support and JPEG fallback.
+ * Constitution Principle IV: Image optimization for performance.
+ * Constitution Principle III: Alt text for WCAG 2.1 AA compliance.
+ */
+
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  width?: number;
+  height?: number;
+  sizes?: string;
+  loading?: 'lazy' | 'eager';
+  class?: string;
+  quality?: number;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  sizes = '(max-width: 428px) 100vw, (max-width: 768px) 80vw, (max-width: 1024px) 60vw, 800px',
+  loading = 'lazy',
+  class: className = '',
+  quality = 80,
+} = Astro.props;
+
+// Enforce alt text requirement (WCAG 1.1.1)
+if (!alt && alt !== '') {
+  throw new Error(
+    `ResponsiveImage: alt text is required for accessibility (WCAG 2.1 AA). Image: ${src}`
+  );
+}
+
+// Default dimensions if not provided
+const imageWidth = width || 800;
+const imageHeight = height || 600;
+
+// Generate srcset widths for responsive images
+const srcsetWidths = [320, 428, 640, 768, 1024, 1280];
+---
+
+<Image
+  src={src}
+  alt={alt}
+  width={imageWidth}
+  height={imageHeight}
+  sizes={sizes}
+  loading={loading}
+  class={className}
+  quality={quality}
+  format="webp"
+  widths={srcsetWidths}
+  decoding="async"
+/>
+
+<style>
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Prevent layout shift (CLS) during loading */
+  img[loading='lazy'] {
+    content-visibility: auto;
+  }
+
+  /* Smooth image appearance */
+  img {
+    transition: opacity var(--transition-fast);
+  }
+
+  img:not([complete]) {
+    opacity: 0;
+  }
+
+  img[complete] {
+    opacity: 1;
+  }
+</style>
