@@ -1,0 +1,203 @@
+---
+/**
+ * Header Component
+ *
+ * Main navigation header with mobile-first design.
+ * Constitution Principle IX: Mobile-first UX with 44×44px touch targets.
+ */
+
+interface Props {
+  currentPath?: string;
+  lang?: 'vi' | 'en' | 'zh' | 'ja' | 'ko';
+}
+
+const { currentPath = '/', lang = 'vi' } = Astro.props;
+
+// Language names in native script
+const languages = {
+  vi: 'Tiếng Việt',
+  en: 'English',
+  zh: '中文',
+  ja: '日本語',
+  ko: '한국어',
+};
+
+const siteName = {
+  vi: 'Ẩm thực đường phố Việt Nam',
+  en: 'Vietnamese Street Food',
+  zh: '越南街頭美食',
+  ja: 'ベトナムストリートフード',
+  ko: '베트남 길거리 음식',
+};
+---
+
+<header class="header">
+  <div class="header-container">
+    <!-- Logo / Site Name -->
+    <div class="header-brand">
+      <a href="/" class="brand-link" aria-label={`${siteName[lang]} - Home`}>
+        <span class="brand-icon" aria-hidden="true">🍜</span>
+        <span class="brand-text">{siteName[lang]}</span>
+      </a>
+    </div>
+
+    <!-- Navigation (will be expanded in future phases) -->
+    <nav class="header-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a
+            href="/"
+            class:list={['nav-link', { active: currentPath === '/' }]}
+            aria-current={currentPath === '/' ? 'page' : undefined}
+          >
+            {lang === 'vi' ? 'Trang chủ' : 'Home'}
+          </a>
+        </li>
+        <!-- Language switcher placeholder (Phase 5) -->
+        <li class="nav-item">
+          <button
+            type="button"
+            class="nav-link language-switcher"
+            aria-label="Switch language"
+            title="Language switcher (coming soon)"
+            disabled
+          >
+            <span aria-hidden="true">🌐</span>
+            <span class="sr-only">{languages[lang]}</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .header-container {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: var(--spacing-3) var(--spacing-4);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-4);
+  }
+
+  /* Brand */
+  .header-brand {
+    flex-shrink: 0;
+  }
+
+  .brand-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-lg);
+    transition: color var(--transition-fast);
+  }
+
+  .brand-link:hover,
+  .brand-link:focus {
+    color: var(--color-primary);
+  }
+
+  .brand-icon {
+    font-size: var(--font-size-2xl);
+    line-height: 1;
+  }
+
+  .brand-text {
+    display: none;
+  }
+
+  /* Navigation */
+  .header-nav {
+    flex-shrink: 0;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-item {
+    margin: 0;
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Touch target 44×44px (iOS) - Constitution Principle IX */
+    min-width: 44px;
+    min-height: 44px;
+    padding: var(--spacing-2) var(--spacing-3);
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-base);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .nav-link:hover,
+  .nav-link:focus {
+    background-color: var(--color-surface-alt);
+    color: var(--color-primary);
+  }
+
+  .nav-link.active {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .language-switcher {
+    font-size: var(--font-size-xl);
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .language-switcher:disabled {
+    opacity: 0.4;
+  }
+
+  /* Tablet and Desktop (min-width: 768px) */
+  @media (min-width: 768px) {
+    .header-container {
+      padding: var(--spacing-4) var(--spacing-6);
+    }
+
+    .brand-text {
+      display: inline;
+    }
+
+    .nav-list {
+      gap: var(--spacing-4);
+    }
+
+    .nav-link {
+      /* Touch target 48×48px (Android) */
+      min-width: 48px;
+      min-height: 48px;
+      padding: var(--spacing-3) var(--spacing-4);
+    }
+  }
+</style>

@@ -1,0 +1,431 @@
+---
+/**
+ * Food Detail Page (Dynamic Route)
+ *
+ * Displays detailed information for a single Vietnamese street food item.
+ * Constitution Principle I: Content-First (comprehensive food information).
+ * Constitution Principle III: WCAG 2.1 AA compliance (semantic HTML, accessibility).
+ */
+
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getFoodsByLanguage } from '@lib/content-queries';
+
+export const getStaticPaths = (async () => {
+  const allFoods = await getFoodsByLanguage('vi');
+
+  return allFoods.map((food) => {
+    // Extract just the filename from the slug (e.g., 'vi/banh-mi' -> 'banh-mi')
+    const slug = food.slug.includes('/') ? food.slug.split('/').pop()! : food.slug;
+
+    return {
+      params: { slug },
+      props: { food },
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const { food } = Astro.props;
+const { Content } = await food.render();
+
+// Extract filename from slug for image paths
+const foodSlug = food.slug.includes('/') ? food.slug.split('/').pop()! : food.slug;
+
+// Category labels in Vietnamese
+const categoryLabels: Record<string, string> = {
+  grilled: 'Nướng',
+  fresh: 'Tươi sống',
+  fried: 'Chiên/Rán',
+  noodle: 'Mì/Bún/Phở',
+  rice: 'Cơm',
+  dessert: 'Tráng miệng',
+  beverage: 'Đồ uống',
+};
+
+// Consumption method labels
+const consumptionMethodLabels: Record<string, string> = {
+  takeaway: 'Mua mang về',
+  'dine-in': 'Ăn tại chỗ',
+  'street-side': 'Ăn vỉa hè',
+  mixed: 'Linh hoạt',
+};
+
+// Eating time labels
+const eatingTimeLabels: Record<string, string> = {
+  morning: 'Sáng',
+  afternoon: 'Trưa',
+  evening: 'Chiều',
+  night: 'Tối',
+  anytime: 'Mọi lúc',
+};
+---
+
+<BaseLayout
+  title={`${food.data.name} - Ẩm thực đường phố Việt Nam`}
+  description={food.data.description}
+  lang="vi"
+>
+  <article class="food-detail">
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <div class="container">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Trang chủ</a></li>
+          <li aria-current="page">{food.data.name}</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Hero Section with Image -->
+    <section class="food-hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-image-wrapper">
+            <img
+              src={`/images/${foodSlug}/${food.data.image}`}
+              alt={food.data.imageAlt}
+              class="hero-image"
+              loading="eager"
+            />
+            <span class="category-badge">
+              {categoryLabels[food.data.category]}
+            </span>
+          </div>
+          <div class="hero-text">
+            <h1 class="food-title">{food.data.name}</h1>
+            <p class="food-description">{food.data.description}</p>
+
+            <!-- Metadata -->
+            <dl class="food-metadata">
+              <div class="metadata-item">
+                <dt>Phân loại:</dt>
+                <dd>{categoryLabels[food.data.category]}</dd>
+              </div>
+              <div class="metadata-item">
+                <dt>Cách thưởng thức:</dt>
+                <dd>{consumptionMethodLabels[food.data.consumptionMethod]}</dd>
+              </div>
+              <div class="metadata-item">
+                <dt>Thời gian ăn:</dt>
+                <dd>
+                  {food.data.eatingTime.map((time) => eatingTimeLabels[time]).join(', ')}
+                </dd>
+              </div>
+              <div class="metadata-item">
+                <dt>Vùng miền:</dt>
+                <dd>{food.data.province.join(', ')}</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Content -->
+    <section class="food-content">
+      <div class="container">
+        <div class="content-grid">
+          <!-- Main Content (Markdown) -->
+          <div class="main-content">
+            <Content />
+          </div>
+
+          <!-- Sidebar with Additional Info -->
+          <aside class="sidebar">
+            <!-- Ingredients -->
+            <div class="info-card">
+              <h2 class="info-title">Nguyên liệu chính</h2>
+              <ul class="ingredients-list">
+                {food.data.ingredients.map((ingredient) => <li>{ingredient}</li>)}
+              </ul>
+            </div>
+
+            <!-- Cooking Method -->
+            <div class="info-card">
+              <h2 class="info-title">Phương pháp chế biến</h2>
+              <p class="cooking-method">{food.data.cookingMethod}</p>
+            </div>
+
+            <!-- Cultural History (if available) -->
+            {
+              food.data.culturalHistory && (
+                <div class="info-card">
+                  <h2 class="info-title">Lịch sử văn hóa</h2>
+                  <p class="cultural-history">{food.data.culturalHistory}</p>
+                </div>
+              )
+            }
+          </aside>
+        </div>
+
+        <!-- Back to Home -->
+        <div class="navigation-actions">
+          <a href="/" class="back-button"> ← Quay lại trang chủ </a>
+        </div>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  /* ===== Breadcrumb ===== */
+  .breadcrumb {
+    background-color: var(--color-surface);
+    padding: var(--spacing-4) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .breadcrumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+    list-style: none;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  .breadcrumb-list li:not(:last-child)::after {
+    content: '/';
+    margin-left: var(--spacing-2);
+    color: var(--color-text-muted);
+  }
+
+  .breadcrumb-list a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .breadcrumb-list a:hover {
+    text-decoration: underline;
+  }
+
+  /* ===== Food Hero ===== */
+  .food-hero {
+    padding: var(--spacing-8) 0;
+    background-color: var(--color-background);
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+  }
+
+  .hero-image-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+  }
+
+  .category-badge {
+    position: absolute;
+    top: var(--spacing-4);
+    right: var(--spacing-4);
+    background-color: rgba(255, 107, 53, 0.95);
+    color: #ffffff;
+    padding: var(--spacing-2) var(--spacing-4);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    box-shadow: var(--shadow-md);
+  }
+
+  .food-title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-3);
+    line-height: var(--line-height-tight);
+  }
+
+  .food-description {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-6);
+  }
+
+  /* Tablet+: side-by-side layout */
+  @media (min-width: 768px) {
+    .hero-content {
+      flex-direction: row;
+      gap: var(--spacing-8);
+    }
+
+    .hero-image-wrapper {
+      flex: 1 1 50%;
+    }
+
+    .hero-text {
+      flex: 1 1 50%;
+    }
+
+    .food-title {
+      font-size: var(--font-size-4xl);
+    }
+  }
+
+  /* ===== Metadata ===== */
+  .food-metadata {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3);
+    padding: var(--spacing-5);
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+  }
+
+  .metadata-item {
+    display: flex;
+    gap: var(--spacing-2);
+    font-size: var(--font-size-sm);
+  }
+
+  .metadata-item dt {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .metadata-item dd {
+    color: var(--color-text-muted);
+  }
+
+  /* Tablet+: 2 columns */
+  @media (min-width: 768px) {
+    .food-metadata {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* ===== Food Content ===== */
+  .food-content {
+    padding: var(--spacing-10) 0;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-8);
+  }
+
+  .main-content {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+  }
+
+  /* Desktop: sidebar layout */
+  @media (min-width: 1024px) {
+    .content-grid {
+      grid-template-columns: 2fr 1fr;
+      gap: var(--spacing-10);
+    }
+  }
+
+  /* ===== Sidebar Info Cards ===== */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+  }
+
+  .info-card {
+    padding: var(--spacing-5);
+    background-color: var(--color-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+  }
+
+  .info-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .ingredients-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .ingredients-list li {
+    padding: var(--spacing-2) 0;
+    padding-left: var(--spacing-5);
+    position: relative;
+    color: var(--color-text-muted);
+  }
+
+  .ingredients-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .cooking-method,
+  .cultural-history {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  /* ===== Navigation Actions ===== */
+  .navigation-actions {
+    margin-top: var(--spacing-10);
+    padding-top: var(--spacing-8);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+  }
+
+  .back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: var(--spacing-3) var(--spacing-6);
+    background-color: var(--color-primary);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: var(--font-weight-semibold);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-md);
+  }
+
+  .back-button:hover {
+    background-color: var(--color-primary-dark);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  .back-button:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .back-button:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+
+  /* Tablet+ adjustments */
+  @media (min-width: 768px) {
+    .back-button {
+      min-width: 48px;
+      min-height: 48px;
+    }
+  }
+</style>

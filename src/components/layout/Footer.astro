@@ -1,0 +1,188 @@
+---
+/**
+ * Footer Component
+ *
+ * Site footer with copyright and links.
+ * Constitution Principle III: WCAG 2.1 AA compliance.
+ */
+
+interface Props {
+  lang?: 'vi' | 'en' | 'zh' | 'ja' | 'ko';
+}
+
+const { lang = 'vi' } = Astro.props;
+
+const currentYear = new Date().getFullYear();
+
+const footerText = {
+  copyright: {
+    vi: `© ${currentYear} Ẩm thực đường phố Việt Nam. Bảo lưu mọi quyền.`,
+    en: `© ${currentYear} Vietnamese Street Food. All rights reserved.`,
+    zh: `© ${currentYear} 越南街頭美食。版權所有。`,
+    ja: `© ${currentYear} ベトナムストリートフード。全著作権所有。`,
+    ko: `© ${currentYear} 베트남 길거리 음식. 모든 권리 보유.`,
+  },
+  builtWith: {
+    vi: 'Được xây dựng với',
+    en: 'Built with',
+    zh: '使用构建',
+    ja: 'で構築',
+    ko: '다음으로 구축',
+  },
+  and: {
+    vi: 'và',
+    en: 'and',
+    zh: '和',
+    ja: 'と',
+    ko: '및',
+  },
+};
+---
+
+<footer class="footer">
+  <div class="footer-container">
+    <!-- Copyright -->
+    <div class="footer-section">
+      <p class="footer-text">{footerText.copyright[lang]}</p>
+    </div>
+
+    <!-- Built with -->
+    <div class="footer-section">
+      <p class="footer-text footer-credits">
+        {footerText.builtWith[lang]}
+        <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="footer-link">
+          Astro
+        </a>
+        {footerText.and[lang]}
+        <a
+          href="https://github.com/qpssoft/Street-Food"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-link"
+        >
+          GitHub Pages
+        </a>
+      </p>
+    </div>
+
+    <!-- Social / Links (placeholder for Phase 7) -->
+    <div class="footer-section">
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <ul class="footer-links">
+          <li>
+            <a
+              href="https://github.com/qpssoft/Street-Food"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-link"
+              aria-label="View source code on GitHub"
+            >
+              GitHub
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    margin-top: auto;
+    padding: var(--spacing-8) var(--spacing-4) var(--spacing-4);
+    background-color: var(--color-surface-alt);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .footer-container {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-section {
+    margin: 0;
+  }
+
+  .footer-text {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .footer-credits {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-2);
+  }
+
+  .footer-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-fast);
+    /* Minimum touch target */
+    padding: var(--spacing-1);
+  }
+
+  .footer-link:hover,
+  .footer-link:focus {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+  }
+
+  .footer-nav {
+    margin-top: var(--spacing-2);
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-4);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-links li {
+    margin: 0;
+  }
+
+  /* Tablet and Desktop (min-width: 768px) */
+  @media (min-width: 768px) {
+    .footer {
+      padding: var(--spacing-12) var(--spacing-6) var(--spacing-6);
+    }
+
+    .footer-container {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .footer-section {
+      flex: 1;
+    }
+
+    .footer-credits {
+      justify-content: flex-start;
+    }
+
+    .footer-nav {
+      margin-top: 0;
+      text-align: right;
+    }
+
+    .footer-links {
+      justify-content: flex-end;
+    }
+  }
+</style>

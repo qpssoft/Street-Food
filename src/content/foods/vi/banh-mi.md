@@ -1,8 +1,9 @@
 ---
 lang: vi
-slug: banh-mi
 name: Bánh mì
-description: Bánh mì Việt Nam là món ăn đường phố nổi tiếng với vỏ bánh giòn, nhân thịt đa dạng, pate gan, và rau sống tươi mát.
+description:
+  Bánh mì Việt Nam là món ăn đường phố nổi tiếng với vỏ bánh giòn, nhân thịt đa
+  dạng, pate gan, và rau sống tươi mát.
 
 ingredients:
   - Bánh mì baguette
@@ -30,7 +31,7 @@ culturalHistory: |
 
   Năm 2011, từ điển Oxford đã chính thức thêm từ "bánh mì" vào từ điển tiếng Anh, công nhận đây là món ăn đặc trưng của Việt Nam, không chỉ là một loại sandwich đơn thuần.
 
-category: mixed
+category: fresh
 consumptionMethod: takeaway
 
 province:
@@ -53,7 +54,8 @@ socialMedia:
 
 consumptionGuidance:
   - step: 1
-    instruction: Cầm bánh mì bằng giấy gói để tránh dính tay và giữ bánh không bị vỡ
+    instruction:
+      Cầm bánh mì bằng giấy gói để tránh dính tay và giữ bánh không bị vỡ
     icon: wrap
   - step: 2
     instruction: Ăn trong vòng 30 phút khi vỏ bánh còn giòn, nhân còn tươi
@@ -67,40 +69,55 @@ popularityRank: 1
 
 # Bánh mì Việt Nam
 
-Bánh mì là một trong những món ăn đường phố phổ biến và nổi tiếng nhất của Việt Nam, được UNESCO công nhận là di sản ẩm thực phi vật thể. Món ăn này kết hợp hoàn hảo giữa ảnh hưởng ẩm thực Pháp (bánh mì baguette) với hương vị đặc trưng Việt Nam (pate, thịt nguội, rau sống).
+Bánh mì là một trong những món ăn đường phố phổ biến và nổi tiếng nhất của Việt
+Nam, được UNESCO công nhận là di sản ẩm thực phi vật thể. Món ăn này kết hợp
+hoàn hảo giữa ảnh hưởng ẩm thực Pháp (bánh mì baguette) với hương vị đặc trưng
+Việt Nam (pate, thịt nguội, rau sống).
 
 ## Nguồn gốc và lịch sử
 
-Bánh mì Việt Nam có nguồn gốc từ thời Pháp thuộc, khi người Pháp du nhập bánh mì baguette vào Việt Nam vào cuối thế kỷ 19. Ban đầu, bánh mì chỉ phổ biến trong tầng lớp thượng lưu và những người Việt Nam làm việc cho người Pháp.
+Bánh mì Việt Nam có nguồn gốc từ thời Pháp thuộc, khi người Pháp du nhập bánh mì
+baguette vào Việt Nam vào cuối thế kỷ 19. Ban đầu, bánh mì chỉ phổ biến trong
+tầng lớp thượng lưu và những người Việt Nam làm việc cho người Pháp.
 
-Sau khi Pháp rút khỏi Việt Nam năm 1954, người Việt bắt đầu cải biên món bánh mì để phù hợp với khẩu vị và nguyên liệu địa phương. Họ giảm lượng gluten trong bột mì, thêm bột gạo để tạo ra loại bánh có vỏ mỏng và giòn hơn so với baguette Pháp truyền thống.
+Sau khi Pháp rút khỏi Việt Nam năm 1954, người Việt bắt đầu cải biên món bánh mì
+để phù hợp với khẩu vị và nguyên liệu địa phương. Họ giảm lượng gluten trong bột
+mì, thêm bột gạo để tạo ra loại bánh có vỏ mỏng và giòn hơn so với baguette Pháp
+truyền thống.
 
 ## Biến thể theo vùng miền
 
 ### Miền Bắc
+
 - **Bánh mì pate**: Chỉ có pate gan và dưa chuột, đơn giản nhưng đậm đà
 - **Bánh mì trứng**: Thêm trứng ốp la hoặc trứng chiên
 - **Bánh mì chả**: Với chả lụa, chả quế đặc trưng của Hà Nội
 
 ### Miền Trung
+
 - **Bánh mì thịt nướng**: Với thịt heo nướng ướp cay, đặc trưng của Đà Nẵng
 - **Bánh mì xíu mại**: Với xíu mại sốt cà chua
 - **Bánh mì hến**: Đặc sản Huế với hến xào
 
 ### Miền Nam
+
 - **Bánh mì thập cẩm**: Đầy đủ nhân nhất, có pate, thịt nguội, chả, giò
 - **Bánh mì ốp la**: Với trứng ốp la giòn rụm
 - **Bánh mì bò kho**: Với bò kho thơm lừng
 
 ## Cách thưởng thức
 
-Bánh mì Việt Nam thường được ăn vào buổi sáng như bữa sáng nhanh, hoặc vào buổi chiều như bữa xế. Tuy nhiên, bạn cũng có thể thưởng thức bánh mì bất cứ lúc nào trong ngày.
+Bánh mì Việt Nam thường được ăn vào buổi sáng như bữa sáng nhanh, hoặc vào buổi
+chiều như bữa xế. Tuy nhiên, bạn cũng có thể thưởng thức bánh mì bất cứ lúc nào
+trong ngày.
 
-Để giữ được độ giòn của vỏ bánh, bạn nên ăn ngay sau khi mua. Bánh mì thường được gói trong giấy bạc hoặc giấy báo để dễ cầm và ăn khi di chuyển.
+Để giữ được độ giòn của vỏ bánh, bạn nên ăn ngay sau khi mua. Bánh mì thường
+được gói trong giấy bạc hoặc giấy báo để dễ cầm và ăn khi di chuyển.
 
 ## Giá trị dinh dưỡng
 
 Một ổ bánh mì thập cẩm cung cấp đầy đủ các dưỡng chất:
+
 - Carbohydrate từ bánh mì
 - Protein từ thịt và pate
 - Vitamin và chất xơ từ rau sống
@@ -108,7 +125,9 @@ Một ổ bánh mì thập cẩm cung cấp đầy đủ các dưỡng chất:
 
 ## Nơi tìm mua
 
-Bạn có thể tìm thấy bánh mì ở hầu hết các con phố tại Việt Nam. Một số địa chỉ nổi tiếng:
+Bạn có thể tìm thấy bánh mì ở hầu hết các con phố tại Việt Nam. Một số địa chỉ
+nổi tiếng:
+
 - **Hà Nội**: Bánh mì Phố Hàng Bông, Bánh mì 25 Hàng Cá
 - **Hồ Chí Minh**: Bánh mì Huỳnh Hoa, Bánh mì Như Lan
 - **Đà Nẵng**: Bánh mì Madame Khánh, Bánh mì Bà Lan

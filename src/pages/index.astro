@@ -1,0 +1,243 @@
+---
+/**
+ * Home Page
+ *
+ * Displays 6 random Vietnamese street food items in a responsive grid.
+ * Constitution Principle I: Content-First (food items as primary focus).
+ * Constitution Principle IX: Mobile-First UX (320px-428px optimized).
+ */
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import FoodCard from '@components/ui/FoodCard.astro';
+import { getFoodsByLanguage } from '@lib/content-queries';
+import { selectSixRandom } from '@lib/random-selection';
+
+// Get all Vietnamese food items
+const allFoods = await getFoodsByLanguage('vi');
+
+// Select 6 random items for display
+const selectedFoods = selectSixRandom(allFoods);
+
+const pageTitle = 'Khám phá ẩm thực đường phố Việt Nam';
+const pageDescription =
+  'Tìm hiểu về các món ăn đường phố đặc trưng của Việt Nam từ Bắc vào Nam. Khám phá hương vị, nguồn gốc văn hóa và cách thưởng thức từng món ăn.';
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} lang="vi">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero-title">
+        <span class="hero-icon">🍜</span>
+        Ẩm thực đường phố Việt Nam
+      </h1>
+      <p class="hero-description">
+        Khám phá hương vị đặc trưng của các món ăn đường phố Việt Nam từ Bắc chí Nam. Mỗi món ăn là
+        một câu chuyện văn hóa, một trải nghiệm ẩm thực độc đáo.
+      </p>
+    </div>
+  </section>
+
+  <!-- Food Grid Section -->
+  <section class="food-grid-section">
+    <div class="container">
+      <h2 class="section-title">Khám phá món ăn ngẫu nhiên</h2>
+      <p class="section-description">Mỗi lần tải lại trang, bạn sẽ khám phá 6 món ăn khác nhau.</p>
+
+      {
+        selectedFoods.length > 0 ? (
+          <div class="food-grid">
+            {selectedFoods.map((food) => {
+              // Extract filename from slug (e.g., 'vi/banh-mi' -> 'banh-mi')
+              const slug = food.slug.includes('/') ? food.slug.split('/').pop()! : food.slug;
+
+              return (
+                <FoodCard
+                  slug={slug}
+                  name={food.data.name}
+                  description={food.data.description}
+                  image={food.data.image}
+                  imageAlt={food.data.imageAlt}
+                  category={food.data.category}
+                  lang="vi"
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <div class="empty-state">
+            <p>Chưa có món ăn nào. Vui lòng quay lại sau.</p>
+          </div>
+        )
+      }
+
+      <!-- Call to Action -->
+      <div class="cta-section">
+        <p class="cta-text">Muốn khám phá thêm? Tải lại trang để xem các món ăn khác!</p>
+        <button type="button" class="cta-button" onclick="window.location.reload()">
+          Làm mới danh sách
+        </button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ===== Hero Section ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: #ffffff;
+    padding: var(--spacing-12) 0 var(--spacing-10);
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-4);
+    line-height: var(--line-height-tight);
+  }
+
+  .hero-icon {
+    display: inline-block;
+    font-size: 1.2em;
+    margin-right: var(--spacing-2);
+  }
+
+  .hero-description {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.95;
+  }
+
+  /* Tablet+ adjustments */
+  @media (min-width: 768px) {
+    .hero {
+      padding: var(--spacing-16) 0 var(--spacing-12);
+    }
+
+    .hero-title {
+      font-size: var(--font-size-4xl);
+    }
+  }
+
+  /* ===== Food Grid Section ===== */
+  .food-grid-section {
+    padding: var(--spacing-10) 0;
+    background-color: var(--color-surface);
+  }
+
+  .section-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    margin-bottom: var(--spacing-3);
+    color: var(--color-text);
+  }
+
+  .section-description {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Mobile-first: 1 column */
+  .food-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+    margin-bottom: var(--spacing-10);
+  }
+
+  /* Large Mobile (428px+): Still 1 column for better readability */
+  @media (min-width: 428px) {
+    .food-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Tablet (768px+): 2 columns */
+  @media (min-width: 768px) {
+    .food-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-8);
+    }
+  }
+
+  /* Desktop (1024px+): 3 columns */
+  @media (min-width: 1024px) {
+    .food-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* ===== Empty State ===== */
+  .empty-state {
+    text-align: center;
+    padding: var(--spacing-16) var(--spacing-4);
+    color: var(--color-text-muted);
+  }
+
+  .empty-state p {
+    font-size: var(--font-size-lg);
+  }
+
+  /* ===== Call to Action ===== */
+  .cta-section {
+    text-align: center;
+    padding-top: var(--spacing-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .cta-text {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .cta-button {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border: none;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-4) var(--spacing-8);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-md);
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .cta-button:hover {
+    background-color: var(--color-primary-dark);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  .cta-button:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .cta-button:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+
+  /* Tablet+ adjustments */
+  @media (min-width: 768px) {
+    .cta-button {
+      min-width: 48px;
+      min-height: 48px;
+      padding: var(--spacing-4) var(--spacing-10);
+    }
+  }
+</style>

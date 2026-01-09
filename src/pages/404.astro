@@ -1,0 +1,299 @@
+---
+/**
+ * 404 Not Found Page
+ *
+ * User-friendly error page for invalid routes.
+ * Constitution Principle III: Accessibility & Inclusivity (clear error messaging).
+ * Constitution Principle VII: Adaptive UX (helpful navigation suggestions).
+ */
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getFoodsByLanguage } from '@lib/content-queries';
+import { selectRandom } from '@lib/random-selection';
+
+// Get 3 random food items to suggest
+const allFoods = await getFoodsByLanguage('vi');
+const suggestedFoods = selectRandom(allFoods, 3);
+---
+
+<BaseLayout
+  title="404 - Không tìm thấy trang"
+  description="Trang bạn đang tìm kiếm không tồn tại. Hãy khám phá các món ăn đường phố Việt Nam khác."
+  lang="vi"
+>
+  <section class="error-page">
+    <div class="container">
+      <!-- Error Message -->
+      <div class="error-content">
+        <div class="error-icon" aria-hidden="true">🍜</div>
+        <h1 class="error-title">404 - Không tìm thấy trang</h1>
+        <p class="error-description">
+          Xin lỗi, trang bạn đang tìm kiếm không tồn tại hoặc đã bị di chuyển. Có thể món ăn bạn tìm
+          chưa được thêm vào danh sách của chúng tôi.
+        </p>
+
+        <!-- Primary Action -->
+        <div class="error-actions">
+          <a href="/" class="primary-button"> Quay lại trang chủ </a>
+        </div>
+      </div>
+
+      <!-- Suggestions -->
+      {
+        suggestedFoods.length > 0 && (
+          <div class="suggestions">
+            <h2 class="suggestions-title">Hoặc khám phá những món ăn này:</h2>
+
+            <div class="suggestions-grid">
+              {suggestedFoods.map((food) => {
+                // Extract filename from slug (e.g., 'vi/banh-mi' -> 'banh-mi')
+                const slug = food.slug.includes('/') ? food.slug.split('/').pop()! : food.slug;
+
+                return (
+                  <a href={`/${slug}`} class="suggestion-card">
+                    <div class="suggestion-image-wrapper">
+                      <img
+                        src={`/images/${slug}/${food.data.image}`}
+                        alt={food.data.imageAlt}
+                        class="suggestion-image"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div class="suggestion-content">
+                      <h3 class="suggestion-title">{food.data.name}</h3>
+                      <p class="suggestion-description">{food.data.description}</p>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        )
+      }
+
+      <!-- Help Section -->
+      <div class="help-section">
+        <h2 class="help-title">Cần trợ giúp?</h2>
+        <p class="help-description">
+          Nếu bạn cho rằng đây là lỗi, vui lòng kiểm tra lại URL hoặc quay lại trang chủ.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ===== Error Page Layout ===== */
+  .error-page {
+    padding: var(--spacing-12) 0;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    background-color: var(--color-surface);
+  }
+
+  .container {
+    max-width: 800px;
+  }
+
+  /* ===== Error Content ===== */
+  .error-content {
+    text-align: center;
+    margin-bottom: var(--spacing-12);
+  }
+
+  .error-icon {
+    font-size: 5rem;
+    margin-bottom: var(--spacing-4);
+    filter: grayscale(50%);
+    opacity: 0.7;
+  }
+
+  .error-title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-4);
+    line-height: var(--line-height-tight);
+  }
+
+  .error-description {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto var(--spacing-8);
+  }
+
+  /* Tablet+ adjustments */
+  @media (min-width: 768px) {
+    .error-icon {
+      font-size: 7rem;
+    }
+
+    .error-title {
+      font-size: var(--font-size-4xl);
+    }
+  }
+
+  /* ===== Error Actions ===== */
+  .error-actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-4);
+  }
+
+  .primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: var(--spacing-4) var(--spacing-8);
+    background-color: var(--color-primary);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-md);
+  }
+
+  .primary-button:hover {
+    background-color: var(--color-primary-dark);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  .primary-button:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .primary-button:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+
+  /* Tablet+ adjustments */
+  @media (min-width: 768px) {
+    .primary-button {
+      min-width: 48px;
+      min-height: 48px;
+      padding: var(--spacing-4) var(--spacing-10);
+    }
+  }
+
+  /* ===== Suggestions Section ===== */
+  .suggestions {
+    margin-bottom: var(--spacing-10);
+  }
+
+  .suggestions-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    text-align: center;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-6);
+  }
+
+  .suggestions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+  }
+
+  /* Tablet+: 3 columns for suggestions */
+  @media (min-width: 768px) {
+    .suggestions-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* ===== Suggestion Cards ===== */
+  .suggestion-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-background);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .suggestion-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+    border-color: var(--color-primary);
+  }
+
+  .suggestion-card:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+
+  .suggestion-image-wrapper {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .suggestion-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-base);
+  }
+
+  .suggestion-card:hover .suggestion-image {
+    transform: scale(1.05);
+  }
+
+  .suggestion-content {
+    padding: var(--spacing-4);
+  }
+
+  .suggestion-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-2);
+    line-height: var(--line-height-tight);
+  }
+
+  .suggestion-description {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-base);
+    color: var(--color-text-muted);
+    /* Truncate to 2 lines */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
+  /* ===== Help Section ===== */
+  .help-section {
+    padding-top: var(--spacing-8);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+  }
+
+  .help-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-3);
+  }
+
+  .help-description {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+</style>

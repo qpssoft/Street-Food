@@ -1,0 +1,187 @@
+---
+/**
+ * FoodCard Component
+ *
+ * Displays a food item in a card format with image, name, and description.
+ * Used in grid layouts for browsing food items.
+ *
+ * Constitution Principle IV: Performance optimization with lazy loading.
+ * Constitution Principle III: WCAG 2.1 AA compliance.
+ */
+
+interface Props {
+  slug: string;
+  name: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  category: string;
+  lang?: 'vi' | 'en' | 'zh' | 'ja' | 'ko';
+}
+
+const { slug, name, description, image, imageAlt, category, lang = 'vi' } = Astro.props;
+
+// Construct image path
+const imagePath = `/images/${slug}/${image}`;
+
+// Category badge text
+const categoryLabels = {
+  grilled: { vi: 'Nướng', en: 'Grilled', zh: '燒烤', ja: '焼き', ko: '구이' },
+  fresh: { vi: 'Tươi', en: 'Fresh', zh: '新鮮', ja: 'フレッシュ', ko: '신선한' },
+  fried: { vi: 'Chiên', en: 'Fried', zh: '油炸', ja: '揚げ', ko: '튀김' },
+  noodle: { vi: 'Mì', en: 'Noodle', zh: '麵條', ja: '麺', ko: '면' },
+  rice: { vi: 'Cơm', en: 'Rice', zh: '米飯', ja: 'ご飯', ko: '밥' },
+  dessert: { vi: 'Tráng miệng', en: 'Dessert', zh: '甜點', ja: 'デザート', ko: '디저트' },
+  beverage: { vi: 'Đồ uống', en: 'Beverage', zh: '飲料', ja: '飲み物', ko: '음료' },
+};
+
+const categoryLabel = categoryLabels[category as keyof typeof categoryLabels]?.[lang] || category;
+---
+
+<article class="food-card">
+  <a href={`/${slug}`} class="card-link">
+    <!-- Image -->
+    <div class="card-image-wrapper">
+      <img
+        src={imagePath}
+        alt={imageAlt}
+        class="card-image"
+        loading="lazy"
+        width="400"
+        height="300"
+      />
+      <!-- Category Badge -->
+      <span class="category-badge" aria-label={`Category: ${categoryLabel}`}>
+        {categoryLabel}
+      </span>
+    </div>
+
+    <!-- Content -->
+    <div class="card-content">
+      <h3 class="card-title">{name}</h3>
+      <p class="card-description">{description}</p>
+    </div>
+  </a>
+</article>
+
+<style>
+  .food-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--transition-base);
+    height: 100%;
+  }
+
+  .food-card:hover,
+  .food-card:focus-within {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+  }
+
+  .card-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .card-link:focus {
+    outline: none;
+  }
+
+  /* Image */
+  .card-image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 75%; /* 4:3 aspect ratio */
+    overflow: hidden;
+    background-color: var(--color-surface-alt);
+  }
+
+  .card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-base);
+  }
+
+  .food-card:hover .card-image,
+  .food-card:focus-within .card-image {
+    transform: scale(1.05);
+  }
+
+  /* Category Badge */
+  .category-badge {
+    position: absolute;
+    top: var(--spacing-3);
+    right: var(--spacing-3);
+    padding: var(--spacing-2) var(--spacing-3);
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--color-text);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .category-badge {
+      background-color: rgba(38, 38, 38, 0.95);
+    }
+  }
+
+  /* Content */
+  .card-content {
+    padding: var(--spacing-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    flex: 1;
+  }
+
+  .card-title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    line-height: var(--line-height-tight);
+  }
+
+  .card-description {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-relaxed);
+    /* Limit to 3 lines with ellipsis */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  /* Tablet and larger (min-width: 768px) */
+  @media (min-width: 768px) {
+    .card-content {
+      padding: var(--spacing-5);
+    }
+
+    .card-title {
+      font-size: var(--font-size-xl);
+    }
+
+    .card-description {
+      font-size: var(--font-size-base);
+    }
+  }
+</style>

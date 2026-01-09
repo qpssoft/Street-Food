@@ -7,17 +7,12 @@ export default [
   js.configs.recommended,
   ...eslintPluginAstro.configs.recommended,
   {
-    files: ['**/*.{js,mjs,cjs,ts,astro}'],
+    files: ['**/*.{js,mjs,cjs,ts}'],
     languageOptions: {
       parser: tsparser,
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
-      },
-      globals: {
-        Astro: 'readonly',
-        astroHTML: 'readonly',
-        Fragment: 'readonly',
       },
     },
     plugins: {

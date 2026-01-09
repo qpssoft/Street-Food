@@ -1,8 +1,9 @@
 ---
 lang: vi
-slug: goi-cuon
 name: Gỏi cuốn
-description: Gỏi cuốn là món ăn nhẹ nhàng, tươi mát với tôm, thịt heo, bún và rau sống cuốn trong bánh tráng, chấm cùng nước sốt đậu phộng thơm béo.
+description:
+  Gỏi cuốn là món ăn nhẹ nhàng, tươi mát với tôm, thịt heo, bún và rau sống cuốn
+  trong bánh tráng, chấm cùng nước sốt đậu phộng thơm béo.
 
 ingredients:
   - Bánh tráng (bánh đa nem)
@@ -69,19 +70,27 @@ popularityRank: 4
 
 # Gỏi cuốn - Hương vị tươi mát của ẩm thực Việt
 
-Gỏi cuốn là món ăn đại diện cho ẩm thực nhẹ nhàng, tươi mát của Việt Nam. Với lớp bánh tráng mỏng trong suốt, bạn có thể nhìn thấy những nguyên liệu tươi ngon bên trong: tôm hồng, thịt heo trắng, rau xanh và bún trắng. Món ăn này không chỉ ngon mà còn đẹp mắt, được nhiều đầu bếp quốc tế ca ngợi.
+Gỏi cuốn là món ăn đại diện cho ẩm thực nhẹ nhàng, tươi mát của Việt Nam. Với
+lớp bánh tráng mỏng trong suốt, bạn có thể nhìn thấy những nguyên liệu tươi ngon
+bên trong: tôm hồng, thịt heo trắng, rau xanh và bún trắng. Món ăn này không chỉ
+ngon mà còn đẹp mắt, được nhiều đầu bếp quốc tế ca ngợi.
 
 ## Lịch sử và nguồn gốc
 
-Gỏi cuốn có nguồn gốc từ miền Nam Việt Nam, đặc biệt là vùng Sài Gòn và đồng bằng sông Cửu Long. Món ăn này xuất hiện từ thế kỷ 17-18, gắn liền với văn hóa trồng lúa nước và nghề làm bánh tráng của người Việt.
+Gỏi cuốn có nguồn gốc từ miền Nam Việt Nam, đặc biệt là vùng Sài Gòn và đồng
+bằng sông Cửu Long. Món ăn này xuất hiện từ thế kỷ 17-18, gắn liền với văn hóa
+trồng lúa nước và nghề làm bánh tráng của người Việt.
 
-Ban đầu, gỏi cuốn chỉ có rau sống, bún và bánh tráng, là món ăn của người dân nghèo. Sau này, khi cuộc sống khá giả hơn, người ta thêm tôm và thịt heo để món ăn thêm dinh dưỡng và hấp dẫn.
+Ban đầu, gỏi cuốn chỉ có rau sống, bún và bánh tráng, là món ăn của người dân
+nghèo. Sau này, khi cuộc sống khá giả hơn, người ta thêm tôm và thịt heo để món
+ăn thêm dinh dưỡng và hấp dẫn.
 
 ## Sự khác biệt với nem rán (chả giò)
 
 Nhiều người nhầm lẫn giữa gỏi cuốn và nem rán:
 
 **Gỏi cuốn (Fresh spring rolls)**:
+
 - Cuốn sống, không chiên
 - Bánh tráng mỏng, trong suốt
 - Nhân tươi: tôm, thịt, rau sống
@@ -89,6 +98,7 @@ Nhiều người nhầm lẫn giữa gỏi cuốn và nem rán:
 - Lành mạnh, ít calo
 
 **Nem rán / Chả giò (Fried spring rolls)**:
+
 - Cuốn rồi chiên ngập dầu
 - Bánh đa nem hoặc bánh tráng dày
 - Nhân chín: thịt băm, mộc nhĩ, miến
@@ -100,6 +110,7 @@ Nhiều người nhầm lẫn giữa gỏi cuốn và nem rán:
 Cuốn gỏi cuốn là một nghệ thuật đòi hỏi khéo léo:
 
 ### Kỹ thuật cuốn cơ bản
+
 1. **Nhúng bánh tráng**: Chỉ nhúng qua nước ấm 1-2 giây, không nhúng lâu
 2. **Để ráo**: Đặt bánh tráng lên mặt phẳng (thớt, đĩa)
 3. **Xếp nhân**:
@@ -110,9 +121,11 @@ Cuốn gỏi cuốn là một nghệ thuật đòi hỏi khéo léo:
    - Cuốn từ phần dưới lên trên
    - Gấp hai bên vào khi cuốn đến 1/2
    - Cuốn chặt, đều tay
-5. **Hoàn thành**: Gỏi cuốn phải cuộn chặt, không bị tróc, nhìn thấy nhân bên trong
+5. **Hoàn thành**: Gỏi cuốn phải cuộn chặt, không bị tróc, nhìn thấy nhân bên
+   trong
 
 ### Bí quyết cuốn ngon
+
 - Bánh tráng mềm vừa phải: không quá mềm (sẽ dính), không quá khô (sẽ rách)
 - Không nhồi quá nhiều nhân
 - Cuốn chặt tay để gỏi cuốn không bị tróc khi ăn
@@ -123,6 +136,7 @@ Cuốn gỏi cuốn là một nghệ thuật đòi hỏi khéo léo:
 Nước sốt đậu phộng là linh hồn của gỏi cuốn:
 
 ### Cách pha truyền thống
+
 - Đậu phộng rang giã nhỏ
 - Tương đen (hoisin sauce)
 - Nước lọc hoặc nước dừa
@@ -130,6 +144,7 @@ Nước sốt đậu phộng là linh hồn của gỏi cuốn:
 - Tương ớt (tùy chọn)
 
 ### Tỷ lệ pha
+
 - 3 thìa tương đen
 - 2 thìa đậu phộng giã
 - 4 thìa nước
@@ -142,21 +157,27 @@ Nước sốt đậu phộng là linh hồn của gỏi cuốn:
 ## Biến thể của gỏi cuốn
 
 ### Gỏi cuốn thịt heo (truyền thống)
+
 Tôm + thịt heo luộc
 
 ### Gỏi cuốn tôm thịt
+
 Chỉ có tôm và thịt, không có bún
 
 ### Gỏi cuốn chay
+
 Thay tôm thịt bằng đậu hủ, nấm
 
 ### Gỏi cuốn bò
+
 Thịt bò thái mỏng thay cho thịt heo
 
 ### Gỏi cuốn sứa
+
 Đặc sản biển, có sứa bên trong
 
 ### Gỏi cuốn cá
+
 Với cá thu hoặc cá hồi
 
 ## Cách ăn gỏi cuốn
@@ -171,17 +192,22 @@ Với cá thu hoặc cá hồi
 ## Nơi ăn gỏi cuốn ngon
 
 ### Hồ Chí Minh
+
 - Gỏi cuốn Cô Ba (Quận 1)
 - Gỏi cuốn Nam Bộ (Quận 3)
 - Các quán ăn vỉa hè
 
 ### Hà Nội
+
 - Gỏi cuốn Hoa Lư (Hoàn Kiếm)
 - Gỏi cuốn Hàng Bông
 - Các hàng quán quanh Hồ Gươm
 
 ### Ngoài nước
-Gỏi cuốn có mặt tại hầu hết các nhà hàng Việt Nam trên thế giới, đặc biệt phổ biến ở:
+
+Gỏi cuốn có mặt tại hầu hết các nhà hàng Việt Nam trên thế giới, đặc biệt phổ
+biến ở:
+
 - Mỹ (California, Texas)
 - Úc (Sydney, Melbourne)
 - Pháp (Paris)
@@ -199,6 +225,7 @@ Gỏi cuốn có mặt tại hầu hết các nhà hàng Việt Nam trên thế 
 Gỏi cuốn là món ăn lành mạnh:
 
 **Một cuốn gỏi cuốn (100g) cung cấp**:
+
 - Calories: 80-100 kcal (rất thấp)
 - Protein: 5-7g (từ tôm, thịt)
 - Carbohydrate: 10-12g (từ bún, bánh tráng)
@@ -207,6 +234,7 @@ Gỏi cuốn là món ăn lành mạnh:
 - Chất béo: <3g (rất ít)
 
 **Lợi ích sức khỏe**:
+
 - Ít calo, phù hợp cho người giảm cân
 - Nhiều rau sống, tốt cho tiêu hóa
 - Không chiên, không dầu mỡ
@@ -216,12 +244,17 @@ Gỏi cuốn là món ăn lành mạnh:
 ## Gỏi cuốn trong văn hóa đại chúng
 
 Gỏi cuốn đã xuất hiện trong nhiều chương trình ẩm thực quốc tế:
+
 - Được Gordon Ramsay thử và khen ngợi
 - Anthony Bourdain giới thiệu trong "Parts Unknown"
 - Xuất hiện trên CNN Travel "Top 50 best Vietnamese foods"
 
-Nhiều đầu bếp nổi tiếng thế giới đã học cách cuốn gỏi cuốn khi đến Việt Nam, và mang món ăn này về giới thiệu tại quê nhà.
+Nhiều đầu bếp nổi tiếng thế giới đã học cách cuốn gỏi cuốn khi đến Việt Nam, và
+mang món ăn này về giới thiệu tại quê nhà.
 
 ## Kết luận
 
-Gỏi cuốn là minh chứng cho triết lý ẩm thực Việt Nam: đơn giản nhưng tinh tế, tươi ngon và lành mạnh. Món ăn này không chỉ ngon mà còn đẹp mắt, thể hiện sự khéo léo và tâm huyết của người làm. Khi đến Việt Nam, đừng quên thử gỏi cuốn - món ăn tươi mát, thanh nhẹ mà vẫn đủ chất!
+Gỏi cuốn là minh chứng cho triết lý ẩm thực Việt Nam: đơn giản nhưng tinh tế,
+tươi ngon và lành mạnh. Món ăn này không chỉ ngon mà còn đẹp mắt, thể hiện sự
+khéo léo và tâm huyết của người làm. Khi đến Việt Nam, đừng quên thử gỏi cuốn -
+món ăn tươi mát, thanh nhẹ mà vẫn đủ chất!
