@@ -1,0 +1,271 @@
+# YAML Frontmatter Content Schema: Street Food Item
+# Vietnamese Street Food Discovery Platform
+# Feature Branch: 001-street-food-app
+# Version: 1.0.0
+# Date: 2026-01-08
+
+# This file defines the YAML frontmatter schema for food item content files.
+# Location: src/content/foods/[lang]/[slug].md
+
+---
+# =============================================================================
+# IDENTIFIERS
+# =============================================================================
+
+# Language code (ISO 639-1)
+# REQUIRED | enum: vi, en, zh, ja, ko
+# Vietnamese (vi) is the canonical language; all others are translations
+lang: 'vi'
+
+# Canonical slug identifier (URL-safe, derived from Vietnamese name)
+# REQUIRED | pattern: ^[a-z0-9-]+$
+# Rules: lowercase, remove diacritics, spaces to hyphens
+# Example: "Bánh mì" → "banh-mi"
+slug: 'banh-mi'
+
+# =============================================================================
+# BASIC INFORMATION
+# =============================================================================
+
+# Food name in current language
+# REQUIRED | minLength: 1 | maxLength: 100
+name: 'Bánh mì'
+
+# Brief description (1-2 sentences)
+# REQUIRED | minLength: 10 | maxLength: 500
+description: 'Bánh mì Việt Nam là món ăn đường phố nổi tiếng với vỏ giòn, nhân thịt, pate, và rau sống.'
+
+# =============================================================================
+# DETAILED CONTENT
+# =============================================================================
+
+# List of ingredients/materials
+# REQUIRED | array | minItems: 1
+ingredients:
+  - 'Bánh mì baguette'
+  - 'Pate gan'
+  - 'Thịt nguội (chả lụa, giò)'
+  - 'Rau sống (dưa chuột, ngò)'
+  - 'Ớt, tương ớt'
+
+# Cooking method / preparation instructions
+# REQUIRED | minLength: 10
+cookingMethod: |
+  1. Nướng bánh mì cho giòn
+  2. Phết pate lên bánh
+  3. Xếp thịt nguội, rau sống
+  4. Thêm gia vị và tương ớt
+
+# Cultural history and significance
+# OPTIONAL | string
+culturalHistory: |
+  Bánh mì Việt Nam xuất hiện từ thời Pháp thuộc (1887-1954), khi người Pháp mang bánh mì baguette đến Việt Nam. Người Việt đã sáng tạo thêm các loại nhân đặc trưng như pate, chả lụa, và rau thơm để tạo nên món ăn đường phố độc đáo.
+
+# =============================================================================
+# CLASSIFICATION
+# =============================================================================
+
+# Food category (for fallback color palette)
+# REQUIRED | enum: grilled, fresh, fried, noodle, rice, dessert, beverage
+category: 'mixed'
+
+# Consumption method (affects UI template selection)
+# REQUIRED | enum: takeaway, dine-in, street-side, mixed
+consumptionMethod: 'takeaway'
+
+# =============================================================================
+# GEOGRAPHIC & TEMPORAL ASSOCIATIONS
+# =============================================================================
+
+# Associated provinces (Vietnamese names)
+# REQUIRED | array | minItems: 1 | maxItems: 10
+# Use official Vietnamese province names (2025 administrative reform)
+province:
+  - 'Hà Nội'
+  - 'Hồ Chí Minh'
+  - 'Đà Nẵng'
+
+# Eating time periods
+# REQUIRED | array | minItems: 1
+# enum values: morning, afternoon, evening, night, anytime
+# Time ranges: morning (5:00-10:00), afternoon (10:00-15:00),
+#              evening (15:00-21:00), night (21:00-5:00)
+eatingTime:
+  - 'morning'
+  - 'afternoon'
+  - 'evening'
+
+# =============================================================================
+# VISUAL ASSETS
+# =============================================================================
+
+# Primary image filename (relative to /public/images/[slug]/)
+# REQUIRED | string
+# Must exist at: public/images/banh-mi/main.jpg
+image: 'main.jpg'
+
+# Image alt text for accessibility (WCAG 2.1 AA)
+# REQUIRED | string
+imageAlt: 'Bánh mì Việt Nam với nhân thịt và rau sống'
+
+# =============================================================================
+# SOCIAL MEDIA INTEGRATION
+# =============================================================================
+
+# Social media links (all optional)
+# OPTIONAL | object
+socialMedia:
+  youtube: 'https://www.youtube.com/watch?v=example' # YouTube video URL
+  facebook: 'https://www.facebook.com/example/posts/123' # Facebook post URL
+  tiktok: 'https://www.tiktok.com/@example/video/123' # TikTok video URL
+  x: 'https://x.com/example/status/123' # X (Twitter) post URL
+
+# =============================================================================
+# CONSUMPTION GUIDANCE
+# =============================================================================
+
+# Step-by-step eating instructions
+# OPTIONAL | array of objects
+# Each step has: step (number), instruction (string), icon (optional string)
+consumptionGuidance:
+  - step: 1
+    instruction: 'Cắm bánh mì bằng giấy để tránh dính tay'
+    icon: 'wrap'
+
+  - step: 2
+    instruction: 'Ăn trong vòng 30 phút khi bánh còn giòn'
+    icon: 'clock'
+
+  - step: 3
+    instruction: 'Thêm tương ớt theo khẩu vị'
+    icon: 'spice'
+
+# Available icons:
+# - wrap: 🌯 (wrapping food)
+# - unwrap: 📦 (unwrapping)
+# - spice: 🌶️ (adding spice/sauce)
+# - utensils: 🥢 (using chopsticks/utensils)
+# - fold: 🔁 (folding)
+# - bite: 😋 (taking a bite)
+# - drink: 🥤 (drinking beverage)
+# - clock: ⏰ (timing consideration)
+# - temperature: 🔥 (temperature note)
+# - share: 👥 (sharing etiquette)
+
+# =============================================================================
+# POPULARITY
+# =============================================================================
+
+# Popularity ranking (1 = most popular)
+# OPTIONAL | integer | minimum: 1
+# Based on: page views, social media mentions, traditional significance
+popularityRank: 1
+
+# =============================================================================
+# VALIDATION RULES SUMMARY
+# =============================================================================
+
+# REQUIRED FIELDS:
+# - lang, slug, name, description
+# - ingredients, cookingMethod
+# - category, consumptionMethod
+# - province, eatingTime
+# - image, imageAlt
+
+# OPTIONAL FIELDS:
+# - culturalHistory
+# - socialMedia (and all subfields)
+# - consumptionGuidance
+# - popularityRank
+
+# FIELD CONSTRAINTS:
+# - name: 1-100 characters
+# - description: 10-500 characters
+# - ingredients: minimum 1 item
+# - province: 1-10 items
+# - eatingTime: minimum 1 item
+# - slug: lowercase, alphanumeric, hyphens only
+# - lang: must be one of: vi, en, zh, ja, ko
+# - category: must be one of: grilled, fresh, fried, noodle, rice, dessert, beverage
+# - consumptionMethod: must be one of: takeaway, dine-in, street-side, mixed
+# - eatingTime values: must be one of: morning, afternoon, evening, night, anytime
+# - socialMedia URLs: must be valid URLs if provided
+# - consumptionGuidance.step: must be positive integer
+# - popularityRank: must be positive integer if provided
+
+# =============================================================================
+# MULTI-LANGUAGE REQUIREMENTS
+# =============================================================================
+
+# Language Variants:
+# - Each food MUST have a Vietnamese (vi) original
+# - Translations MUST use the SAME slug across all languages
+# - All REQUIRED fields must be translated
+# - OPTIONAL fields may differ between languages
+#
+# File Organization:
+#   src/content/foods/vi/banh-mi.md  (Vietnamese original)
+#   src/content/foods/en/banh-mi.md  (English translation)
+#   src/content/foods/zh/banh-mi.md  (Chinese translation)
+#   src/content/foods/ja/banh-mi.md  (Japanese translation)
+#   src/content/foods/ko/banh-mi.md  (Korean translation)
+#
+# URL Structure:
+#   /vi/banh-mi.html (Vietnamese)
+#   /en/banh-mi.html (English)
+#   /zh/banh-mi.html (Chinese)
+#   /ja/banh-mi.html (Japanese)
+#   /ko/banh-mi.html (Korean)
+
+# =============================================================================
+# CONTENT COMPLETENESS STANDARDS
+# =============================================================================
+
+# Launch Requirements (SC-004: 80% completeness):
+# - MUST have: name, description, ingredients, cookingMethod, image
+# - MUST have: category, consumptionMethod, province, eatingTime
+# - SHOULD have: culturalHistory (for cultural authenticity)
+# - SHOULD have: socialMedia (for 60% of items per SC-006)
+# - SHOULD have: consumptionGuidance (for 75% of items per SC-025)
+# - MAY have: popularityRank
+
+# Post-Launch Iteration:
+# - Improve culturalHistory depth
+# - Add more consumptionGuidance steps
+# - Expand province associations
+# - Add more socialMedia links
+# - Update popularityRank based on analytics
+
+# =============================================================================
+# EXAMPLE MARKDOWN CONTENT (BELOW FRONTMATTER)
+# =============================================================================
+
+---
+
+# Below this YAML frontmatter, add Markdown content with:
+# - Detailed cultural history
+# - Regional variations
+# - Traditional eating customs
+# - Notable vendors/locations
+# - Personal stories/anecdotes
+
+# Example:
+
+# # Bánh mì Việt Nam
+#
+# Bánh mì là một trong những món ăn đường phố phổ biến nhất tại Việt Nam,
+# kết hợp hương vị của vỏ bánh giòn với nhân thịt đa dạng và rau sống tươi mát.
+#
+# ## Nguồn gốc
+#
+# Bánh mì Việt Nam xuất hiện trong thời kỳ Pháp thuộc (1887-1954)...
+#
+# ## Biến thể theo vùng
+#
+# - **Miền Bắc**: Bánh mì pate, bánh mì chả
+# - **Miền Trung**: Bánh mì thịt nướng
+# - **Miền Nam**: Bánh mì thập cẩm, bánh mì xíu mại
+#
+# ## Cách thưởng thức
+#
+# Bánh mì Việt Nam thường được ăn vào buổi sáng hoặc chiều...
