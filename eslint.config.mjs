@@ -52,6 +52,45 @@ export default [
     },
   },
   {
+    // Node.js config files (playwright.config.ts, etc.)
+    files: ['*.config.ts', '*.config.js', '*.config.mjs'],
+    languageOptions: {
+      parser: tsparser,
+      globals: {
+        process: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        module: 'readonly',
+        require: 'readonly',
+        exports: 'readonly',
+      },
+    },
+  },
+  {
+    // Test files (Playwright, Vitest)
+    files: ['tests/**/*.ts', 'tests/**/*.spec.ts', '**/*.test.ts'],
+    languageOptions: {
+      parser: tsparser,
+      globals: {
+        // Browser globals for E2E tests
+        document: 'readonly',
+        window: 'readonly',
+        navigator: 'readonly',
+        console: 'readonly',
+        // Node globals
+        process: 'readonly',
+      },
+    },
+    rules: {
+      '@typescript-eslint/no-unused-vars': ['error', {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        // Allow unused vars in test files that start with underscore or are test-specific
+        caughtErrorsIgnorePattern: '^_',
+      }],
+    },
+  },
+  {
     // Ignore patterns
     ignores: [
       'node_modules/',
