@@ -116,15 +116,15 @@ Within each story, tasks marked `[P]` can run in parallel.
 
 ### Tasks
 
-- [ ] T001 Clone repository and checkout branch `001-street-food-app`
-- [ ] T002 Initialize npm project and install Astro 4.x dependencies in package.json
-- [ ] T003 Install image processing dependencies (sharp, @astrojs/image) in package.json
-- [ ] T004 Install testing dependencies (vitest, playwright, @axe-core/playwright) in package.json
-- [ ] T005 Install Workbox dependencies (workbox-build, workbox-cli) for Service Worker in package.json
-- [ ] T006 Install color manipulation dependencies (color) in package.json
-- [ ] T007 Create project directory structure: src/{content,components,pages,lib,data,styles,i18n}, public/{images,fonts}, tests/{e2e,accessibility,unit}
-- [ ] T008 Create language-specific content directories: src/content/foods/{vi,en,zh,ja,ko}
-- [ ] T009 Create component directories: src/components/{layout,adaptive,map,ui}
+- [X] T001 Clone repository and checkout branch `001-street-food-app`
+- [X] T002 Initialize npm project and install Astro 4.x dependencies in package.json
+- [X] T003 Install image processing dependencies (sharp, @astrojs/image) in package.json
+- [X] T004 Install testing dependencies (vitest, playwright, @axe-core/playwright) in package.json
+- [X] T005 Install Workbox dependencies (workbox-build, workbox-cli) for Service Worker in package.json
+- [X] T006 Install color manipulation dependencies (color) in package.json
+- [X] T007 Create project directory structure: src/{content,components,pages,lib,data,styles,i18n}, public/{images,fonts}, tests/{e2e,accessibility,unit}
+- [X] T008 Create language-specific content directories: src/content/foods/{vi,en,zh,ja,ko}
+- [X] T009 Create component directories: src/components/{layout,adaptive,map,ui}
 
 **Phase 1 Complete**: Project structure initialized with all dependencies.
 
