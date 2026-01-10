@@ -39,6 +39,7 @@ body {
   --color-primary: #ff6b35;
   --color-primary-light: #ff8c5a;
   --color-primary-dark: #e64a1a;
+  --color-primary-darker: #b83200; /* WCAG AA compliant on light backgrounds */
 
   --color-text: #1a1a1a;
   --color-text-muted: #6b6b6b;

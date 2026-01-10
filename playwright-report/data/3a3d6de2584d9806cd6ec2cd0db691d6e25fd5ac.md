@@ -1,0 +1,96 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - link "Bỏ qua đến nội dung chính" [ref=e2]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "Ẩm thực đường phố Việt Nam - Home" [ref=e6]:
+        - /url: /
+        - generic [ref=e7]: 🍜
+        - generic [ref=e8]: Ẩm thực đường phố Việt Nam
+      - navigation "Main navigation" [ref=e9]:
+        - list [ref=e10]:
+          - listitem [ref=e11]:
+            - link "Trang chủ" [ref=e12] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e13]:
+            - button "Switch language" [disabled]:
+              - generic: 🌐
+              - generic: Tiếng Việt
+  - main [ref=e14]:
+    - generic [ref=e16]:
+      - heading "🍜 Ẩm thực đường phố Việt Nam" [level=1] [ref=e17]:
+        - generic [ref=e18]: 🍜
+        - text: Ẩm thực đường phố Việt Nam
+      - paragraph [ref=e19]: Khám phá hương vị đặc trưng của các món ăn đường phố Việt Nam từ Bắc chí Nam. Mỗi món ăn là một câu chuyện văn hóa, một trải nghiệm ẩm thực độc đáo.
+    - generic [ref=e21]:
+      - heading "Khám phá món ăn ngẫu nhiên" [level=2] [ref=e22]
+      - paragraph [ref=e23]: Mỗi lần tải lại trang, bạn sẽ khám phá 6 món ăn khác nhau.
+      - generic [ref=e24]:
+        - article [ref=e25]:
+          - 'link "Bún chả Hà Nội với thịt nướng, bún tươi và rau sống Category: Nướng Bún chả Bún chả là món ăn đặc trưng của Hà Nội với thịt heo nướng thơm phức, bún tươi mềm mại, và nước mắm chua ngọt đậm đà." [ref=e26]':
+            - /url: /bun-cha
+            - generic [ref=e27]:
+              - img "Bún chả Hà Nội với thịt nướng, bún tươi và rau sống" [ref=e28]
+              - 'generic "Category: Nướng" [ref=e29]': Nướng
+            - generic [ref=e30]:
+              - heading "Bún chả" [level=3] [ref=e31]
+              - paragraph [ref=e32]: Bún chả là món ăn đặc trưng của Hà Nội với thịt heo nướng thơm phức, bún tươi mềm mại, và nước mắm chua ngọt đậm đà.
+        - article [ref=e33]:
+          - 'link "Bánh mì Việt Nam với nhân thịt nguội, pate gan và rau sống Category: Tươi Bánh mì Bánh mì Việt Nam là món ăn đường phố nổi tiếng với vỏ bánh giòn, nhân thịt đa dạng, pate gan, và rau sống tươi mát." [ref=e34]':
+            - /url: /banh-mi
+            - generic [ref=e35]:
+              - img "Bánh mì Việt Nam với nhân thịt nguội, pate gan và rau sống" [ref=e36]
+              - 'generic "Category: Tươi" [ref=e37]': Tươi
+            - generic [ref=e38]:
+              - heading "Bánh mì" [level=3] [ref=e39]
+              - paragraph [ref=e40]: Bánh mì Việt Nam là món ăn đường phố nổi tiếng với vỏ bánh giòn, nhân thịt đa dạng, pate gan, và rau sống tươi mát.
+        - article [ref=e41]:
+          - 'link "Cà phê sữa đá với phin cà phê truyền thống Việt Nam Category: Đồ uống Cà phê sữa đá Cà phê sữa đá là thức uống biểu tượng của Việt Nam với hương vị cà phê đậm đà, sữa đặc ngọt béo, và đá lạnh sảng khoái." [ref=e42]':
+            - /url: /ca-phe-sua-da
+            - generic [ref=e43]:
+              - img "Cà phê sữa đá với phin cà phê truyền thống Việt Nam" [ref=e44]
+              - 'generic "Category: Đồ uống" [ref=e45]': Đồ uống
+            - generic [ref=e46]:
+              - heading "Cà phê sữa đá" [level=3] [ref=e47]
+              - paragraph [ref=e48]: Cà phê sữa đá là thức uống biểu tượng của Việt Nam với hương vị cà phê đậm đà, sữa đặc ngọt béo, và đá lạnh sảng khoái.
+        - article [ref=e49]:
+          - 'link "Gỏi cuốn tươi với tôm, thịt và rau sống trong bánh tráng trong suốt Category: Tươi Gỏi cuốn Gỏi cuốn là món ăn nhẹ nhàng, tươi mát với tôm, thịt heo, bún và rau sống cuốn trong bánh tráng, chấm cùng nước sốt đậu phộng thơm béo." [ref=e50]':
+            - /url: /goi-cuon
+            - generic [ref=e51]:
+              - img "Gỏi cuốn tươi với tôm, thịt và rau sống trong bánh tráng trong suốt" [ref=e52]
+              - 'generic "Category: Tươi" [ref=e53]': Tươi
+            - generic [ref=e54]:
+              - heading "Gỏi cuốn" [level=3] [ref=e55]
+              - paragraph [ref=e56]: Gỏi cuốn là món ăn nhẹ nhàng, tươi mát với tôm, thịt heo, bún và rau sống cuốn trong bánh tráng, chấm cùng nước sốt đậu phộng thơm béo.
+        - article [ref=e57]:
+          - 'link "Tô phở Việt Nam với thịt bò, rau thơm và nước dùng trong vắt Category: Mì Phở Phở là món ăn quốc hồn quốc túy của Việt Nam với nước dùng trong vắt, bánh phở mềm mại, và thịt bò hoặc gà thơm ngon." [ref=e58]':
+            - /url: /pho
+            - generic [ref=e59]:
+              - img "Tô phở Việt Nam với thịt bò, rau thơm và nước dùng trong vắt" [ref=e60]
+              - 'generic "Category: Mì" [ref=e61]': Mì
+            - generic [ref=e62]:
+              - heading "Phở" [level=3] [ref=e63]
+              - paragraph [ref=e64]: Phở là món ăn quốc hồn quốc túy của Việt Nam với nước dùng trong vắt, bánh phở mềm mại, và thịt bò hoặc gà thơm ngon.
+      - generic [ref=e65]:
+        - paragraph [ref=e66]: Muốn khám phá thêm? Tải lại trang để xem các món ăn khác!
+        - button "Làm mới danh sách" [active] [ref=e67] [cursor=pointer]
+  - contentinfo [ref=e68]:
+    - generic [ref=e69]:
+      - paragraph [ref=e71]: © 2026 Ẩm thực đường phố Việt Nam. Bảo lưu mọi quyền.
+      - paragraph [ref=e73]:
+        - text: Được xây dựng với
+        - link "Astro ↗" [ref=e74]:
+          - /url: https://astro.build
+        - text: và
+        - link "GitHub Pages ↗" [ref=e75]:
+          - /url: https://github.com/qpssoft/Street-Food
+      - navigation "Footer navigation" [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "View source code on GitHub" [ref=e80]:
+              - /url: https://github.com/qpssoft/Street-Food
+              - text: GitHub ↗
+```

@@ -67,7 +67,7 @@ p:last-child {
 
 /* ===== Links ===== */
 a {
-  color: var(--color-primary);
+  color: var(--color-primary-darker);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
@@ -238,7 +238,7 @@ abbr[title] {
 }
 
 .text-primary {
-  color: var(--color-primary);
+  color: var(--color-primary-darker);
 }
 
 .text-success {

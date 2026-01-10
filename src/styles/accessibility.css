@@ -12,7 +12,7 @@
   left: 0;
   z-index: 100;
   padding: var(--spacing-3) var(--spacing-4);
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-darker);
   color: #ffffff;
   text-decoration: none;
   font-weight: var(--font-weight-semibold);

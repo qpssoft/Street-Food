@@ -2,9 +2,9 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  // GitHub Pages deployment
+  // GitHub Pages deployment (only use base path when deploying to GitHub Pages)
   site: 'https://qpssoft.github.io',
-  base: '/Street-Food',
+  base: process.env.GITHUB_PAGES === 'true' ? '/Street-Food' : '/',
 
   // Static site generation (no SSR)
   output: 'static',
