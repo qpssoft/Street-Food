@@ -44,8 +44,40 @@ eatingTime:
   - afternoon
   - evening
 
-image: main.jpg
+image: /image/bun-cha-ha-noi/cach-lam-bun-cha-ha-noi-truyen-thong-202112211431417496.jpg
 imageAlt: Bún chả Hà Nội với thịt nướng, bún tươi và rau sống
+
+images:
+  - url: /image/bun-cha-ha-noi/cach-lam-bun-cha-ha-noi-truyen-thong-202112211431417496.jpg
+    alt: Bún chả Hà Nội truyền thống
+    caption: Bún chả Hà Nội với thịt nướng than hồng
+  - url: /image/bun-cha-ha-noi/cach-lam-bun-cha-ha-noi-truyen-thong-chuan-vi-ha-thanh-202201111235292144.jpeg
+    alt: Nguyên liệu làm bún chả
+    caption: Nguyên liệu chuẩn bị cho bún chả
+  - url: /image/bun-cha-ha-noi/cach-lam-bun-cha-ha-noi-truyen-thong-2_760x427.jpg
+    alt: Thái thịt heo cho bún chả
+    caption: Thái thịt heo thành từng miếng vừa ăn
+  - url: /image/bun-cha-ha-noi/cach-lam-bun-cha-ha-noi-truyen-thong-3_760x456.jpg
+    alt: Ướp thịt gia vị
+    caption: Ướp thịt với gia vị đặc trưng
+  - url: /image/bun-cha-ha-noi/cach-lam-bun-cha-ha-noi-truyen-thong-5_760x501.jpg
+    alt: Chuẩn bị nướng thịt
+    caption: Chuẩn bị nướng thịt trên bếp than
+  - url: /image/bun-cha-ha-noi/cach-lam-bun-cha-ha-noi-truyen-thong-6_760x508.jpg
+    alt: Thịt nướng vàng giòn
+    caption: Thịt nướng vàng ươm thơm phức
+  - url: /image/bun-cha-ha-noi/cach-lam-bun-cha-ha-noi-truyen-thong-7_760x448.jpg
+    alt: Pha nước chấm bún chả
+    caption: Pha nước chấm chua ngọt đậm đà
+  - url: /image/bun-cha-ha-noi/cach-lam-bun-cha-ha-noi-truyen-thong-8_760x529.jpg
+    alt: Bún chả bày biện đẹp mắt
+    caption: Bún chả được bày biện đẹp mắt
+  - url: /image/bun-cha-ha-noi/cach-lam-bun-cha-ha-noi-truyen-thong-chuan-vi-ha-thanh-202205271024236058.jpg
+    alt: Bún chả hoàn chỉnh
+    caption: Bún chả chuẩn vị Hà thành
+  - url: /image/bun-cha-ha-noi/cach-lam-bun-cha-ha-noi-truyen-thong-chuan-vi-ha-thanh-202205271018143380.jpg
+    alt: Cách thưởng thức bún chả
+    caption: Cách thưởng thức bún chả đúng điệu
 
 socialMedia:
   youtube: https://www.youtube.com/watch?v=VJNYlOFSYy8

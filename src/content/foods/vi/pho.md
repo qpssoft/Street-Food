@@ -48,8 +48,31 @@ eatingTime:
   - afternoon
   - anytime
 
-image: main.jpg
+image: /image/pho-bo-ha-noi/cach-nau-pho-bo-ngon-chuan-vi-ha-noi-nuoc-dung-dam-da-202208251845456653.jpg
 imageAlt: Tô phở Việt Nam với thịt bò, rau thơm và nước dùng trong vắt
+
+images:
+  - url: /image/pho-bo-ha-noi/cach-nau-pho-bo-ngon-chuan-vi-ha-noi-nuoc-dung-dam-da-202208251845456653.jpg
+    alt: Phở bò Hà Nội chuẩn vị
+    caption: Tô phở bò Hà Nội với thịt tái và nước dùng trong
+  - url: /image/pho-bo-ha-noi/an-lien-3-bat-pho-voi-cong-thuc-nau-pho-nay-202201261419401397.jpg
+    alt: Phở bò truyền thống
+    caption: Phở bò truyền thống Hà Nội
+  - url: /image/pho-bo-ha-noi/an-lien-3-bat-pho-voi-cong-thuc-nau-pho-nay-202201261420466331.jpg
+    alt: So sánh phở Hà Nội và Nam Định
+    caption: Sự khác biệt giữa phở Hà Nội và Nam Định
+  - url: /image/pho-bo-ha-noi/an-lien-3-bat-pho-voi-cong-thuc-nau-pho-nay-202201261426437466.jpg
+    alt: Phở tái bò
+    caption: Phở tái với thịt bò tươi
+  - url: /image/pho-bo-ha-noi/cach-nau-pho-bo-ngon-chuan-vi-ha-noi-nuoc-dung-dam-da-202201261500501972.jpg
+    alt: Nguyên liệu nấu phở
+    caption: Nguyên liệu để nấu nước dùng phở
+  - url: /image/pho-bo-ha-noi/cach-nau-pho-bo-ngon-chuan-vi-ha-noi-nuoc-dung-dam-da-202201261501423561.jpg
+    alt: Hầm nước dùng phở
+    caption: Quá trình hầm nước dùng phở thơm ngon
+  - url: /image/pho-bo-ha-noi/cach-nau-pho-bo-ngon-chuan-vi-ha-noi-nuoc-dung-dam-da-202201261433333353.jpg
+    alt: Phở bò nấu rượu
+    caption: Phở bò nấu rượu vang - biến thể đặc biệt
 
 socialMedia:
   youtube: https://www.youtube.com/watch?v=x7JNRHKgzUY

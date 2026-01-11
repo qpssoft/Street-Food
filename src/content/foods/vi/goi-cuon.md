@@ -48,8 +48,28 @@ province:
 eatingTime:
   - anytime
 
-image: main.jpg
+image: /image/goi-cuon/cach-lam-goi-cuon-tom-thit-thom-ngon-cho-bua-com-gian-don-202203021427281747.jpg
 imageAlt: Gỏi cuốn tươi với tôm, thịt và rau sống trong bánh tráng trong suốt
+
+images:
+  - url: /image/goi-cuon/cach-lam-goi-cuon-tom-thit-thom-ngon-cho-bua-com-gian-don-202203021427281747.jpg
+    alt: Gỏi cuốn tươi ngon
+    caption: Gỏi cuốn tươi với tôm và rau sống
+  - url: /image/goi-cuon/cach-lam-goi-cuon-thom-ngon-don-gian-2_760x451.jpg
+    alt: Chuẩn bị thịt cho gỏi cuốn
+    caption: Sơ chế và luộc thịt heo
+  - url: /image/goi-cuon/cach-lam-goi-cuon-thom-ngon-don-gian-3_760x450.jpg
+    alt: Luộc tôm cho gỏi cuốn
+    caption: Luộc tôm vừa chín tới
+  - url: /image/goi-cuon/cach-lam-goi-cuon-tom-thit-thom-ngon-cho-bua-com-gian-don-202112301129029086.jpg
+    alt: Rau sống cho gỏi cuốn
+    caption: Chuẩn bị rau sống tươi xanh
+  - url: /image/goi-cuon/cach-lam-goi-cuon-tom-thit-thom-ngon-cho-bua-com-gian-don-202102201225481515.jpg
+    alt: Kỹ thuật cuốn gỏi cuốn
+    caption: Kỹ thuật cuốn gỏi cuốn đúng cách
+  - url: /image/goi-cuon/cach-lam-goi-cuon-thom-ngon-don-gian-5_760x450.jpg
+    alt: Gỏi cuốn kèm nước sốt
+    caption: Gỏi cuốn chấm với nước sốt đậu phộng
 
 socialMedia:
   youtube: https://www.youtube.com/watch?v=AKp0DbbX15w

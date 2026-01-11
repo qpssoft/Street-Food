@@ -21,8 +21,8 @@ interface Props {
 
 const { slug, name, description, image, imageAlt, category, lang = 'vi' } = Astro.props;
 
-// Construct image path
-const imagePath = `/images/${slug}/${image}`;
+// Use image path directly (already includes full path from content files)
+const imagePath = image;
 
 // Category badge text
 const categoryLabels = {

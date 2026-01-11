@@ -82,7 +82,7 @@ const eatingTimeLabels: Record<string, string> = {
         <div class="hero-content">
           <div class="hero-image-wrapper">
             <img
-              src={`/images/${foodSlug}/${food.data.image}`}
+              src={food.data.image}
               alt={food.data.imageAlt}
               class="hero-image"
               loading="eager"
@@ -120,6 +120,25 @@ const eatingTimeLabels: Record<string, string> = {
         </div>
       </div>
     </section>
+
+    <!-- Image Gallery -->
+    {
+      food.data.images && food.data.images.length > 0 && (
+        <section class="image-gallery">
+          <div class="container">
+            <h2 class="gallery-title">Hình ảnh chi tiết</h2>
+            <div class="gallery-grid">
+              {food.data.images.map((img) => (
+                <div class="gallery-item">
+                  <img src={img.url} alt={img.alt} class="gallery-image" loading="lazy" />
+                  {img.caption && <p class="gallery-caption">{img.caption}</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
 
     <!-- Detailed Content -->
     <section class="food-content">
@@ -427,5 +446,71 @@ const eatingTimeLabels: Record<string, string> = {
       min-width: 48px;
       min-height: 48px;
     }
+  }
+
+  /* ===== Image Gallery ===== */
+  .image-gallery {
+    padding: var(--spacing-10) 0;
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .gallery-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-6);
+    text-align: center;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+  }
+
+  /* Tablet: 2 columns */
+  @media (min-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-8);
+    }
+  }
+
+  /* Desktop: 3 columns */
+  @media (min-width: 1024px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .gallery-item {
+    background-color: var(--color-background);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+  }
+
+  .gallery-item:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+
+  .gallery-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+  }
+
+  .gallery-caption {
+    padding: var(--spacing-3) var(--spacing-4);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-align: center;
+    line-height: var(--line-height-normal);
+    background-color: var(--color-background);
   }
 </style>

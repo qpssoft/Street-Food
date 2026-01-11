@@ -2,21 +2,33 @@
 /**
  * Home Page
  *
- * Displays 6 random Vietnamese street food items in a responsive grid.
+ * Displays time-aware Vietnamese street food suggestions with random selection.
  * Constitution Principle I: Content-First (food items as primary focus).
+ * Constitution Principle VII: Adaptive UX (time-aware content).
  * Constitution Principle IX: Mobile-First UX (320px-428px optimized).
  */
 
 import BaseLayout from '@layouts/BaseLayout.astro';
 import FoodCard from '@components/ui/FoodCard.astro';
+import TimeGreeting from '@components/ui/TimeGreeting.astro';
 import { getFoodsByLanguage } from '@lib/content-queries';
 import { selectSixRandom } from '@lib/random-selection';
+import { getCurrentEatingPeriod, isSuitableForCurrentTime } from '@lib/time-utils';
 
 // Get all Vietnamese food items
 const allFoods = await getFoodsByLanguage('vi');
 
-// Select 6 random items for display
-const selectedFoods = selectSixRandom(allFoods);
+// Get current eating period
+const currentPeriod = getCurrentEatingPeriod();
+
+// Filter foods suitable for current time
+const timeSuitableFoods = allFoods.filter((food) =>
+  isSuitableForCurrentTime(food.data.eatingTime, currentPeriod)
+);
+
+// Select 6 random items from time-suitable foods, fallback to all foods if not enough
+const foodsToSelect = timeSuitableFoods.length >= 3 ? timeSuitableFoods : allFoods;
+const selectedFoods = selectSixRandom(foodsToSelect);
 
 const pageTitle = 'Khám phá ẩm thực đường phố Việt Nam';
 const pageDescription =
@@ -41,8 +53,13 @@ const pageDescription =
   <!-- Food Grid Section -->
   <section class="food-grid-section">
     <div class="container">
-      <h2 class="section-title">Khám phá món ăn ngẫu nhiên</h2>
-      <p class="section-description">Mỗi lần tải lại trang, bạn sẽ khám phá 6 món ăn khác nhau.</p>
+      <!-- Time-based Greeting -->
+      <TimeGreeting lang="vi" />
+
+      <h2 class="section-title">Món ăn phù hợp</h2>
+      <p class="section-description">
+        Các món ăn được gợi ý dựa trên thời gian hiện tại. Làm mới trang để khám phá thêm!
+      </p>
 
       {
         selectedFoods.length > 0 ? (

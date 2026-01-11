@@ -46,8 +46,43 @@ eatingTime:
   - afternoon
   - evening
 
-image: main.jpg
+image: /image/banh-mi-cha-ca/cach-lam-banh-mi-cha-ca-don-gian-cho-bua-sang-day-dinh-duong-202211301148589006.jpg
 imageAlt: Bánh mì Việt Nam với nhân thịt nguội, pate gan và rau sống
+
+images:
+  - url: /image/banh-mi-cha-ca/cach-lam-banh-mi-cha-ca-don-gian-cho-bua-sang-day-dinh-duong-202211301148589006.jpg
+    alt: Bánh mì chả cá với nhân thịt đầy đủ
+    caption: Bánh mì chả cá thơm ngon đầy đủ nhân
+  - url: /image/banh-mi-cha-ca/cach-lam-banh-mi-cha-ca-don-gian-cho-bua-sang-day-dinh-duong-202211301305534782.jpg
+    alt: Bánh mì chả cá phiên bản 2
+    caption: Bánh mì với nhân chả cá chiên giòn
+  - url: /image/banh-mi-cha-ca/cach-lam-banh-mi-cha-ca-don-gian-cho-bua-sang-day-dinh-duong-202211301148484833.jpg
+    alt: Nguyên liệu làm bánh mì chả cá
+    caption: Nguyên liệu chuẩn bị cho bánh mì chả cá
+  - url: /image/banh-mi-cha-ca/cach-lam-banh-mi-cha-ca-don-gian-cho-bua-sang-day-dinh-duong-202211301149227862.jpg
+    alt: Chuẩn bị chả cá
+    caption: Quá trình chuẩn bị chả cá
+  - url: /image/banh-mi-cha-ca/cach-lam-banh-mi-cha-ca-don-gian-cho-bua-sang-day-dinh-duong-202211301149426094.jpg
+    alt: Chiên chả cá
+    caption: Chiên chả cá vàng giòn
+  - url: /image/banh-mi-cha-ca/cach-lam-banh-mi-cha-ca-don-gian-cho-bua-sang-day-dinh-duong-202211301305400586.jpg
+    alt: Nước sốt bánh mì
+    caption: Nước sốt đặc trưng cho bánh mì
+  - url: /image/banh-mi-cha-ca/cach-lam-banh-mi-cha-ca-don-gian-cho-bua-sang-day-dinh-duong-202211231851365830.jpg
+    alt: Bánh mì chả cá ốp la
+    caption: Bánh mì chả cá kèm trứng ốp la
+  - url: /image/banh-mi-cha-ca/cach-lam-banh-mi-cha-ca-don-gian-cho-bua-sang-day-dinh-duong-202211231844517108.jpg
+    alt: Nguyên liệu phiên bản ốp la
+    caption: Nguyên liệu cho bánh mì chả cá ốp la
+  - url: /image/banh-mi-cha-ca/cach-lam-banh-mi-cha-ca-don-gian-cho-bua-sang-day-dinh-duong-202211231546344775.jpg
+    alt: Chiên chả cá cho bánh mì
+    caption: Chả cá đang được chiên vàng
+  - url: /image/banh-mi-cha-ca/cach-lam-banh-mi-cha-ca-don-gian-cho-bua-sang-day-dinh-duong-202211231545129294.jpg
+    alt: Sơ chế nguyên liệu
+    caption: Sơ chế và chuẩn bị nguyên liệu
+  - url: /image/banh-mi-cha-ca/cach-lam-banh-mi-cha-ca-don-gian-cho-bua-sang-day-dinh-duong-202211231609405200.jpg
+    alt: Thành phẩm bánh mì hoàn chỉnh
+    caption: Bánh mì chả cá hoàn chỉnh sẵn sàng thưởng thức
 
 socialMedia:
   youtube: https://www.youtube.com/watch?v=KVNLXjVQI9M

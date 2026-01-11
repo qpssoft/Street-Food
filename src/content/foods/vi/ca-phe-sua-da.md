@@ -44,8 +44,25 @@ eatingTime:
   - morning
   - afternoon
 
-image: main.jpg
+image: /image/ca-phe-sua-da/nguoi-viet-ngoi-quan-via-he-thuong-thuc-ca-phe-sua-da.jpg
 imageAlt: Cà phê sữa đá với phin cà phê truyền thống Việt Nam
+
+images:
+  - url: /image/ca-phe-sua-da/nguoi-viet-ngoi-quan-via-he-thuong-thuc-ca-phe-sua-da.jpg
+    alt: Người Việt ngồi quán vỉa hè thưởng thức cà phê sữa đá
+    caption: Văn hóa cà phê vỉa hè đặc trưng của Việt Nam
+  - url: /image/ca-phe-sua-da/nguoi-viet-ngoi-quan-via-he-thuong-thuc-ca-phe-sua-da-1200x900.jpg
+    alt: Cà phê sữa đá với phin truyền thống
+    caption: Phin cà phê - dụng cụ pha cà phê truyền thống
+  - url: /image/ca-phe-sua-da/nguoi-viet-ngoi-quan-via-he-thuong-thuc-ca-phe-sua-da-1200x806.jpg
+    alt: Ly cà phê sữa đá đá lạnh
+    caption: Cà phê sữa đá mát lạnh sảng khoái
+  - url: /image/ca-phe-sua-da/nguoi-viet-ngoi-quan-via-he-thuong-thuc-ca-phe-sua-da-1200x675.jpg
+    alt: Quán cà phê vỉa hè Sài Gòn
+    caption: Không gian thưởng thức cà phê vỉa hè
+  - url: /image/ca-phe-sua-da/nguoi-viet-ngoi-quan-via-he-thuong-thuc-ca-phe-sua-da-500x500.jpg
+    alt: Cà phê sữa đá góc chụp gần
+    caption: Hương vị đậm đà của cà phê Việt Nam
 
 socialMedia:
   youtube: https://www.youtube.com/watch?v=J2GyttT1T2A

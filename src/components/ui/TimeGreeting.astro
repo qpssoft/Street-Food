@@ -1,0 +1,110 @@
+---
+/**
+ * Time Greeting Component
+ *
+ * Displays contextual greeting and description based on current time of day.
+ * Implements the "Bây giờ ăn gì?" feature for time-aware user experience.
+ *
+ * Constitution Principle VII: Adaptive UX (context-aware content).
+ */
+
+import { getTimeContext } from '@lib/time-utils';
+
+interface Props {
+  lang?: 'vi' | 'en';
+  showIcon?: boolean;
+  className?: string;
+}
+
+const { lang = 'vi', showIcon = true, className = '' } = Astro.props;
+
+// Get time-based context
+const timeContext = getTimeContext(lang);
+---
+
+<div class:list={['time-greeting', className]}>
+  <div class="time-greeting-content">
+    {showIcon && <span class="time-icon" aria-hidden="true">{timeContext.icon}</span>}
+    <h2 class="time-greeting-title">{timeContext.greeting}</h2>
+    <p class="time-greeting-description">{timeContext.description}</p>
+  </div>
+</div>
+
+<style>
+  .time-greeting {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-darker) 0%,
+      var(--color-primary-dark) 100%
+    );
+    color: #ffffff;
+    padding: var(--spacing-8) var(--spacing-4);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-8);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .time-greeting-content {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .time-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: var(--spacing-3);
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .time-greeting-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-3);
+    line-height: var(--line-height-tight);
+  }
+
+  .time-greeting-description {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Tablet and Desktop */
+  @media (min-width: 768px) {
+    .time-greeting {
+      padding: var(--spacing-10) var(--spacing-6);
+    }
+
+    .time-icon {
+      font-size: 4rem;
+    }
+
+    .time-greeting-title {
+      font-size: var(--font-size-3xl);
+    }
+
+    .time-greeting-description {
+      font-size: var(--font-size-lg);
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .time-icon {
+      animation: none;
+    }
+  }
+</style>

@@ -29,7 +29,14 @@
       "Bash(netstat:*)",
       "Bash(findstr:*)",
       "Bash(taskkill:*)",
-      "Bash(npx playwright install)"
+      "Bash(npx playwright install)",
+      "Bash(mkdir:*)",
+      "Bash(node download-images.js:*)",
+      "Bash(dir:*)",
+      "Bash(node download-images-original.js:*)",
+      "Bash(grep:*)",
+      "Bash(npm run dev:*)",
+      "Bash(curl:*)"
     ]
   }
 }

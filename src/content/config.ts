@@ -59,6 +59,16 @@ const foodsCollection = defineCollection({
     // ===== Visual Assets =====
     image: z.string().describe('Relative path to primary image (e.g., "main.jpg")'),
     imageAlt: z.string().describe('Alt text for accessibility (WCAG 2.1 AA)'),
+    images: z
+      .array(
+        z.object({
+          url: z.string().describe('Image URL path'),
+          alt: z.string().describe('Alt text for image'),
+          caption: z.string().optional().describe('Optional caption'),
+        })
+      )
+      .optional()
+      .describe('Additional images for gallery display'),
 
     // ===== Social Media Integration (Optional) =====
     socialMedia: z
