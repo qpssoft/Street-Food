@@ -31,6 +31,18 @@ const { Content } = await food.render();
 // Extract filename from slug for image paths
 const foodSlug = food.slug.includes('/') ? food.slug.split('/').pop()! : food.slug;
 
+// Parse cooking method into steps
+function parseCookingSteps(cookingMethod: string): string[] {
+  // Split by numbered steps (e.g., "1.", "2.", etc.)
+  const steps = cookingMethod
+    .split(/\d+\.\s+/)
+    .filter((step) => step.trim().length > 0)
+    .map((step) => step.trim());
+  return steps;
+}
+
+const cookingSteps = parseCookingSteps(food.data.cookingMethod);
+
 // Category labels in Vietnamese
 const categoryLabels: Record<string, string> = {
   grilled: 'Nướng',
@@ -152,25 +164,63 @@ const eatingTimeLabels: Record<string, string> = {
           <!-- Sidebar with Additional Info -->
           <aside class="sidebar">
             <!-- Ingredients -->
-            <div class="info-card">
-              <h2 class="info-title">Nguyên liệu chính</h2>
+            <div class="info-card ingredients-card">
+              <h2 class="info-title">
+                <span class="title-icon" aria-hidden="true">🥘</span>
+                Nguyên liệu chính
+              </h2>
               <ul class="ingredients-list">
                 {food.data.ingredients.map((ingredient) => <li>{ingredient}</li>)}
               </ul>
             </div>
 
             <!-- Cooking Method -->
-            <div class="info-card">
-              <h2 class="info-title">Phương pháp chế biến</h2>
-              <p class="cooking-method">{food.data.cookingMethod}</p>
+            <div class="info-card cooking-card">
+              <h2 class="info-title">
+                <span class="title-icon" aria-hidden="true">👨‍🍳</span>
+                Phương pháp chế biến
+              </h2>
+              <ol class="cooking-steps">
+                {
+                  cookingSteps.map((step, index) => (
+                    <li class="cooking-step">
+                      <span class="step-number">{index + 1}</span>
+                      <span class="step-text">{step}</span>
+                    </li>
+                  ))
+                }
+              </ol>
             </div>
 
             <!-- Cultural History (if available) -->
             {
               food.data.culturalHistory && (
-                <div class="info-card">
-                  <h2 class="info-title">Lịch sử văn hóa</h2>
-                  <p class="cultural-history">{food.data.culturalHistory}</p>
+                <div class="info-card history-card">
+                  <h2 class="info-title">
+                    <span class="title-icon" aria-hidden="true">📜</span>
+                    Lịch sử văn hóa
+                  </h2>
+                  <div class="cultural-history">{food.data.culturalHistory}</div>
+                </div>
+              )
+            }
+
+            <!-- Consumption Guidance (if available) -->
+            {
+              food.data.consumptionGuidance && food.data.consumptionGuidance.length > 0 && (
+                <div class="info-card guidance-card">
+                  <h2 class="info-title">
+                    <span class="title-icon" aria-hidden="true">🍽️</span>
+                    Hướng dẫn thưởng thức
+                  </h2>
+                  <ol class="guidance-steps">
+                    {food.data.consumptionGuidance.map((guide) => (
+                      <li class="guidance-step">
+                        <span class="guidance-number">{guide.step}</span>
+                        <span class="guidance-text">{guide.instruction}</span>
+                      </li>
+                    ))}
+                  </ol>
                 </div>
               )
             }
@@ -360,10 +410,34 @@ const eatingTimeLabels: Record<string, string> = {
   }
 
   .info-card {
-    padding: var(--spacing-5);
+    padding: var(--spacing-6);
     background-color: var(--color-surface);
     border-radius: var(--radius-lg);
     border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
+  }
+
+  .info-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary-dark);
+  }
+
+  /* Card variants */
+  .ingredients-card {
+    border-top: 3px solid #4ade80;
+  }
+
+  .cooking-card {
+    border-top: 3px solid #fb923c;
+  }
+
+  .history-card {
+    border-top: 3px solid #a78bfa;
+  }
+
+  .guidance-card {
+    border-top: 3px solid var(--color-primary);
   }
 
   .info-title {
@@ -371,33 +445,168 @@ const eatingTimeLabels: Record<string, string> = {
     font-weight: var(--font-weight-semibold);
     color: var(--color-text);
     margin-bottom: var(--spacing-4);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+  }
+
+  .title-icon {
+    font-size: 1.5em;
+    line-height: 1;
   }
 
   .ingredients-list {
     list-style: none;
     padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2);
+  }
+
+  /* Tablet+: 2 columns for ingredients */
+  @media (min-width: 768px) {
+    .ingredients-list {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-3);
+    }
+  }
+
+  /* Desktop: Back to 1 column in sidebar */
+  @media (min-width: 1024px) {
+    .ingredients-list {
+      grid-template-columns: 1fr;
+    }
   }
 
   .ingredients-list li {
-    padding: var(--spacing-2) 0;
-    padding-left: var(--spacing-5);
+    padding: var(--spacing-3) var(--spacing-4);
+    padding-left: var(--spacing-10);
     position: relative;
-    color: var(--color-text-muted);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-primary-darker);
+    transition: all var(--transition-fast);
+  }
+
+  .ingredients-list li:hover {
+    background-color: var(--color-surface-alt);
+    transform: translateX(4px);
   }
 
   .ingredients-list li::before {
     content: '✓';
     position: absolute;
-    left: 0;
+    left: var(--spacing-3);
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--color-primary-darker);
     font-weight: var(--font-weight-bold);
+    font-size: 1.2em;
   }
 
-  .cooking-method,
+  /* Cooking Steps */
+  .cooking-steps {
+    list-style: none;
+    padding: 0;
+    counter-reset: step-counter;
+  }
+
+  .cooking-step {
+    display: flex;
+    gap: var(--spacing-4);
+    padding: var(--spacing-4);
+    margin-bottom: var(--spacing-3);
+    background-color: var(--color-background);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    transition: all var(--transition-base);
+    position: relative;
+  }
+
+  .cooking-step:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+  }
+
+  .step-number {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary-darker) 0%, var(--color-primary-dark) 100%);
+    color: #ffffff;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-lg);
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .step-text {
+    flex: 1;
+    color: var(--color-text);
+    line-height: var(--line-height-relaxed);
+    padding-top: var(--spacing-1);
+  }
+
   .cultural-history {
     font-size: var(--font-size-base);
     line-height: var(--line-height-relaxed);
     color: var(--color-text-muted);
+    white-space: pre-line;
+  }
+
+  /* Consumption Guidance */
+  .guidance-steps {
+    list-style: none;
+    padding: 0;
+  }
+
+  .guidance-step {
+    display: flex;
+    gap: var(--spacing-3);
+    padding: var(--spacing-3);
+    margin-bottom: var(--spacing-3);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 107, 53, 0.05) 0%,
+      rgba(255, 107, 53, 0.02) 100%
+    );
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-primary);
+    transition: all var(--transition-fast);
+  }
+
+  .guidance-step:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 107, 53, 0.1) 0%,
+      rgba(255, 107, 53, 0.05) 100%
+    );
+    transform: translateX(4px);
+  }
+
+  .guidance-number {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-sm);
+    border-radius: 50%;
+  }
+
+  .guidance-text {
+    flex: 1;
+    color: var(--color-text);
+    line-height: var(--line-height-relaxed);
+    font-size: var(--font-size-sm);
   }
 
   /* ===== Navigation Actions ===== */
