@@ -16,9 +16,6 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
-env:
-  GITHUB_PAGES: true
-
 jobs:
   build:
     name: Build Astro Site
