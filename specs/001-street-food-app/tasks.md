@@ -286,9 +286,9 @@ and detailed information pages.
 
 ### Deployment
 
-- [ ] T046 [US1] Create GitHub Actions workflow in
+- [X] T046 [US1] Create GitHub Actions workflow in
       .github/workflows/build-deploy.yml for automated GitHub Pages deployment
-- [ ] T047 [US1] Deploy MVP to GitHub Pages and verify production build
+- [X] T047 [US1] Deploy MVP to GitHub Pages and verify production build
       performance
 
 **Phase 3 Complete**: MVP READY - Users can browse 20 Vietnamese street food
