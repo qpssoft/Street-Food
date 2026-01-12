@@ -67,6 +67,9 @@ const eatingTimeLabels: Record<string, string> = {
   night: 'Tối',
   anytime: 'Mọi lúc',
 };
+
+// Use base URL for proper GitHub Pages path handling
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout
@@ -79,7 +82,7 @@ const eatingTimeLabels: Record<string, string> = {
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <div class="container">
         <ol class="breadcrumb-list">
-          <li><a href="/">Trang chủ</a></li>
+          <li><a href={baseUrl}>Trang chủ</a></li>
           <li aria-current="page">{food.data.name}</li>
         </ol>
       </div>
@@ -226,7 +229,7 @@ const eatingTimeLabels: Record<string, string> = {
 
         <!-- Back to Home -->
         <div class="navigation-actions">
-          <a href="/" class="back-button"> ← Quay lại trang chủ </a>
+          <a href={baseUrl} class="back-button"> ← Quay lại trang chủ </a>
         </div>
       </div>
     </section>

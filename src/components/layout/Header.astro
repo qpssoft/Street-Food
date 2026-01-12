@@ -29,13 +29,16 @@ const siteName = {
   ja: 'ベトナムストリートフード',
   ko: '베트남 길거리 음식',
 };
+
+// Use base URL for proper GitHub Pages path handling
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <header class="header">
   <div class="header-container">
     <!-- Logo / Site Name -->
     <div class="header-brand">
-      <a href="/" class="brand-link" aria-label={`${siteName[lang]} - Home`}>
+      <a href={baseUrl} class="brand-link" aria-label={`${siteName[lang]} - Home`}>
         <span class="brand-icon" aria-hidden="true">🍜</span>
         <span class="brand-text">{siteName[lang]}</span>
       </a>
@@ -46,9 +49,9 @@ const siteName = {
       <ul class="nav-list">
         <li class="nav-item">
           <a
-            href="/"
-            class:list={['nav-link', { active: currentPath === '/' }]}
-            aria-current={currentPath === '/' ? 'page' : undefined}
+            href={baseUrl}
+            class:list={['nav-link', { active: currentPath === baseUrl }]}
+            aria-current={currentPath === baseUrl ? 'page' : undefined}
           >
             {lang === 'vi' ? 'Trang chủ' : 'Home'}
           </a>
