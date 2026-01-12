@@ -32,7 +32,7 @@ culturalHistory: |
   
   Bánh bao là món ăn sáng yêu thích, đặc biệt phổ biến ở Sài Gòn và Chợ Lớn.
 
-category: mixed
+category: rice
 consumptionMethod: takeaway
 
 province:

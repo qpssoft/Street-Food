@@ -119,7 +119,7 @@ const navItems = [
         menuToggle.setAttribute('aria-expanded', 'false');
         navMenu.classList.remove('is-open');
         document.body.classList.remove('menu-open');
-        menuToggle.focus();
+        (menuToggle as HTMLElement).focus();
       }
     });
   }

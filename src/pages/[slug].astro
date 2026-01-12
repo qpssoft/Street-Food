@@ -28,9 +28,6 @@ export const getStaticPaths = (async () => {
 const { food } = Astro.props;
 const { Content } = await food.render();
 
-// Extract filename from slug for image paths
-const foodSlug = food.slug.includes('/') ? food.slug.split('/').pop()! : food.slug;
-
 // Parse cooking method into steps
 function parseCookingSteps(cookingMethod: string): string[] {
   // Split by numbered steps (e.g., "1.", "2.", etc.)
