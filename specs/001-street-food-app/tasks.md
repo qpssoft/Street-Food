@@ -225,15 +225,15 @@ and detailed information pages.
 
 ### Content Preparation
 
-- [ ] T024 [P] [US1] Create Vietnamese food item content file for Bánh mì in
+- [X] T024 [P] [US1] Create Vietnamese food item content file for Bánh mì in
       src/content/foods/vi/banh-mi.md with complete YAML frontmatter
-- [ ] T025 [P] [US1] Create Vietnamese food item content file for Phở in
+- [X] T025 [P] [US1] Create Vietnamese food item content file for Phở in
       src/content/foods/vi/pho.md
-- [ ] T026 [P] [US1] Create Vietnamese food item content files for 18 additional
+- [X] T026 [P] [US1] Create Vietnamese food item content files for 18 additional
       foods (total 20) in src/content/foods/vi/
-- [ ] T027 [P] [US1] Add high-quality food images (800×600+ pixels) to
+- [X] T027 [P] [US1] Add high-quality food images (800×600+ pixels) to
       public/images/[slug]/ directories for all 20 food items
-- [ ] T028 [P] [US1] Optimize all food images using sharp to generate WebP
+- [X] T028 [P] [US1] Optimize all food images using sharp to generate WebP
       versions with JPEG fallbacks
 
 ### Components

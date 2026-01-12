@@ -1,5 +1,6 @@
 ---
 lang: vi
+slug: goi-cuon
 name: Gỏi cuốn
 description:
   Gỏi cuốn là món ăn nhẹ nhàng, tươi mát với tôm, thịt heo, bún và rau sống cuốn

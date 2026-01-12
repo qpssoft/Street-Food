@@ -1,5 +1,6 @@
 ---
 lang: vi
+slug: banh-mi
 name: Bánh mì
 description:
   Bánh mì Việt Nam là món ăn đường phố nổi tiếng với vỏ bánh giòn, nhân thịt đa

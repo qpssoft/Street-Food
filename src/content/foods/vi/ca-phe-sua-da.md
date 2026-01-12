@@ -1,5 +1,6 @@
 ---
 lang: vi
+slug: ca-phe-sua-da
 name: Cà phê sữa đá
 description:
   Cà phê sữa đá là thức uống biểu tượng của Việt Nam với hương vị cà phê đậm đà,

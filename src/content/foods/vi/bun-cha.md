@@ -1,5 +1,6 @@
 ---
 lang: vi
+slug: bun-cha
 name: Bún chả
 description:
   Bún chả là món ăn đặc trưng của Hà Nội với thịt heo nướng thơm phức, bún tươi

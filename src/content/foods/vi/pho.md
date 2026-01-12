@@ -1,5 +1,6 @@
 ---
 lang: vi
+slug: pho
 name: Phở
 description:
   Phở là món ăn quốc hồn quốc túy của Việt Nam với nước dùng trong vắt, bánh phở
