@@ -21,9 +21,6 @@ interface Props {
 
 const { slug, name, description, image, imageAlt, category, lang = 'vi' } = Astro.props;
 
-// Use image path directly (already includes full path from content files)
-const imagePath = image;
-
 // Category badge text
 const categoryLabels = {
   grilled: { vi: 'Nướng', en: 'Grilled', zh: '燒烤', ja: '焼き', ko: '구이' },
@@ -41,6 +38,10 @@ const categoryLabel = categoryLabels[category as keyof typeof categoryLabels]?.[
 const baseUrl = import.meta.env.BASE_URL;
 // Ensure proper path with single slash between baseUrl and slug
 const foodUrl = `${baseUrl}/${slug}`.replace(/\/+/g, '/');
+// Fix image path to include base URL
+const imagePath = image.startsWith('/')
+  ? `${baseUrl}${image}`
+  : `${baseUrl}/${image}`.replace(/\/+/g, '/');
 ---
 
 <article class="food-card">

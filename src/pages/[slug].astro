@@ -70,6 +70,16 @@ const eatingTimeLabels: Record<string, string> = {
 
 // Use base URL for proper GitHub Pages path handling
 const baseUrl = import.meta.env.BASE_URL;
+
+// Fix image paths to include base URL
+const fixImagePath = (path: string) => {
+  if (!path) return path;
+  return path.startsWith('/')
+    ? `${baseUrl}${path}`
+    : `${baseUrl}/${path}`.replace(/\/+/g, '/');
+};
+
+const heroImagePath = fixImagePath(food.data.image);
 ---
 
 <BaseLayout
@@ -94,7 +104,7 @@ const baseUrl = import.meta.env.BASE_URL;
         <div class="hero-content">
           <div class="hero-image-wrapper">
             <img
-              src={food.data.image}
+              src={heroImagePath}
               alt={food.data.imageAlt}
               class="hero-image"
               loading="eager"
@@ -142,7 +152,7 @@ const baseUrl = import.meta.env.BASE_URL;
             <div class="gallery-grid">
               {food.data.images.map((img) => (
                 <div class="gallery-item">
-                  <img src={img.url} alt={img.alt} class="gallery-image" loading="lazy" />
+                  <img src={fixImagePath(img.url)} alt={img.alt} class="gallery-image" loading="lazy" />
                   {img.caption && <p class="gallery-caption">{img.caption}</p>}
                 </div>
               ))}
