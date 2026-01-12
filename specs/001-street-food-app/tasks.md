@@ -238,35 +238,35 @@ and detailed information pages.
 
 ### Components
 
-- [ ] T029 [P] [US1] Create Header component in
+- [X] T029 [P] [US1] Create Header component in
       src/components/layout/Header.astro with navigation and language switcher
       placeholder
-- [ ] T030 [P] [US1] Create Footer component in
+- [X] T030 [P] [US1] Create Footer component in
       src/components/layout/Footer.astro with copyright and links
-- [ ] T031 [P] [US1] Create Navigation component in
+- [X] T031 [P] [US1] Create Navigation component in
       src/components/layout/Navigation.astro with mobile-first menu (44×44px
       touch targets)
-- [ ] T032 [P] [US1] Create FoodCard component in
+- [X] T032 [P] [US1] Create FoodCard component in
       src/components/ui/FoodCard.astro for displaying food items in grid with
       image, name, description
-- [ ] T033 [US1] Create FoodDetailLayout in src/layouts/FoodDetailLayout.astro
+- [X] T033 [US1] Create FoodDetailLayout in src/layouts/FoodDetailLayout.astro
       extending BaseLayout with SEO meta tags
 
 ### Pages & Routing
 
-- [ ] T034 [US1] Create home page in src/pages/index.astro with random 6-item
+- [X] T034 [US1] Create home page in src/pages/index.astro with random 6-item
       selection logic
-- [ ] T035 [US1] Create dynamic food detail page in src/pages/[slug].astro using
+- [X] T035 [US1] Create dynamic food detail page in src/pages/[slug].astro using
       getStaticPaths() to generate routes for all Vietnamese food items
-- [ ] T036 [US1] Implement asynchronous content loading using Astro's built-in
+- [X] T036 [US1] Implement asynchronous content loading using Astro's built-in
       partial hydration with View Transitions API
-- [ ] T037 [US1] Create 404 error page in src/pages/404.astro
+- [X] T037 [US1] Create 404 error page in src/pages/404.astro
 
 ### Utilities & Logic
 
-- [ ] T038 [P] [US1] Create random selection utility in
+- [X] T038 [P] [US1] Create random selection utility in
       src/lib/random-selection.ts to pick 6 items from food collection
-- [ ] T039 [P] [US1] Create content query helpers in src/lib/content-queries.ts
+- [X] T039 [P] [US1] Create content query helpers in src/lib/content-queries.ts
       to fetch food items by slug, category, or province
 
 ### Testing & Validation
